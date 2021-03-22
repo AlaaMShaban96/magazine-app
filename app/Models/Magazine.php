@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Magazine extends Model
 {
     use HasFactory;
+    protected $fillable = ['name','corporation_id','rating_id','country_id'];
 }
