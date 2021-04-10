@@ -10,22 +10,22 @@
     <div class="card-container">
         <div class="card">
             <i class="fa fa-map-o"></i>
-            <span>10</span>
+            <span>{{$status['magazine']}}</span>
             <h2>مجلة</h2>
         </div>
         <div class="card">
             <i class="fa fa-flag"></i>
-            <span>10</span>
+            <span>{{$status['country']}}</span>
             <h2>دولة</h2>
         </div>
         <div class="card">
             <i class="fa fa-briefcase"></i>
-            <span>10</span>
+            <span>{{$status['corporation']}}</span>
             <h2>مؤسسة</h2>
         </div>
         <div class="card">
             <i class="fa fa-grip-lines"></i>
-            <span>10</span>
+            <span>{{$status['rating']}}</span>
             <h2>تصنيف</h2>
         </div>
     </div>

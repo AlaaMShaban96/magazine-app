@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Corporation;
 use Illuminate\Http\Request;
+use App\Http\Requests\Corporation\CorporationRequest;
 
 class CorporationController extends Controller
 {
@@ -14,7 +15,8 @@ class CorporationController extends Controller
      */
     public function index()
     {
-        //
+        $corporations=Corporation::paginate(7);
+        return view('admin.corporation',compact('corporations'));
     }
 
     /**
@@ -33,9 +35,10 @@ class CorporationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CorporationRequest $request)
     {
-        //
+        Corporation::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +83,7 @@ class CorporationController extends Controller
      */
     public function destroy(Corporation $corporation)
     {
-        //
+        $corporation->delete();
+       return redirect('/corporations');
     }
 }

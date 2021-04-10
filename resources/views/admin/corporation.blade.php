@@ -13,25 +13,26 @@
             <td></td>
         </thead>
         <tbody>
-        @for($i=0;$i<10;$i++)
+            @foreach ($corporations as $corporation)
             <tr>
-                <td>اسم الؤسسة</td>
-                <td><form class="d-inline">
+                <td>{{$corporation->name}}</td>
+                <td>
+                    <form action="{{url('/corporations/'.$corporation->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
+                        <a class="edit" href="#"><i class="fa fa-pencil "></i></a>
+
                     </form>
-                    <a class="edit" href="#"><i class="fa fa-pencil "></i></a>
                 </td>
             </tr>
-        @endfor
+            @endforeach
         </tbody>
 
     </table>
     <div class="table--footer">
-        <div class="pagination">
-            <a href="#" class="pagination-button active">1</a>
-            <a href="#" class="pagination-button">2</a>
-            <a href="#" class="pagination-button">...</a>
-        </div>
+        {{$corporations->links('vendor.pagination.semantic-ui')}}
+
     </div>
 
     <div id="createModal" class="modal">
@@ -43,7 +44,8 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{url('/corporations')}}" method="post">
+                    @csrf
                     <div class="form-holder">
                         <div class="form-input-container">
                             <input type="text" name="name" class="form-input" id="nameField" placeholder="اسم المؤسسة">

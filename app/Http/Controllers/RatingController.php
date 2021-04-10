@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use App\Http\Requests\Rating\RatingRequest;
 
 class RatingController extends Controller
 {
@@ -14,7 +15,8 @@ class RatingController extends Controller
      */
     public function index()
     {
-        //
+        $ratings=Rating::paginate(7);
+        return view('admin.ratings',compact('ratings'));
     }
 
     /**
@@ -33,9 +35,10 @@ class RatingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RatingRequest $request)
     {
-        //
+        Rating::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -80,6 +83,7 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        //
+        $rating->delete();
+        return redirect('/ratings');
     }
 }

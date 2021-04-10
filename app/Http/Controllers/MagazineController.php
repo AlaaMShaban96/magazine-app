@@ -14,7 +14,8 @@ class MagazineController extends Controller
      */
     public function index()
     {
-        //
+        $magazines=Magazine::all();
+        return view();
     }
 
     /**

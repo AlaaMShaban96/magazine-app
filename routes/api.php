@@ -18,5 +18,6 @@ use App\Http\Controllers\API\CorporationController;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::post('/login',[]);
 Route::resource('/corporation', CorporationController::class);
 Route::resource('/magazine', MagazineController::class);
