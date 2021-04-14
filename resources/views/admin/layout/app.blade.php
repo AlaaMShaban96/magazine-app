@@ -29,6 +29,14 @@
                     <img class="profile" src="https://via.placeholder.com/40" width="40" height="40" />
                 </div>
             </div>
+            <div class="alert alert-error">
+                وراقيك يا طيب
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+            <div class="alert alert-success">
+                مية مية تشم
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
             @yield('content')
         </main>
     </body>

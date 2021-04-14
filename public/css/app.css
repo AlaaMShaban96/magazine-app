@@ -84,8 +84,14 @@ main {
     margin-left: 20px;
 }
 
-h2{
+.nav h2{
     color:#25282B;
+    display: inline;
+}
+.nav a  > span {
+    font-size:14px;
+    color:#336CFB;
+    margin:0 10px;
 }
 .button{
     padding:10px 40px;
@@ -103,6 +109,9 @@ h2{
 .button-wide
 {
     width: 100%;
+}
+.button-primary{
+    background:rgba(51, 108, 251, 0.54);
 }
 .card-container{
     display:flex;
@@ -219,7 +228,7 @@ td .edit {
     border-radius: 5px;
 }
 .modal__tall{
-    height: 500px;
+    height: 650px;
 }
 .modal-header {
     padding:10px 20px;
@@ -276,7 +285,7 @@ td .edit {
     display:flex;
     flex-direction: column;
     align-items: center;
-    margin:5px 0px;
+    margin:5px 0;
 }
 .form-input:focus + label , .form-input:not(:placeholder-shown) + label{
     bottom: 100%;
@@ -329,3 +338,34 @@ td .edit {
 }
 
 
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    text-align:right;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.alert-error {
+    background: #FF6760;
+}
+.alert-success {
+    background: #16D090;
+}
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}
