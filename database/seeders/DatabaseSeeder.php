@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CountrySeeder::class);
         $this->call(RatingSeeder::class);
         $this->call(MagazineSeeder::class);
+        $this->call(AdminSeed::class);
        
         // \App\Models\User::factory(10)->create();
     }

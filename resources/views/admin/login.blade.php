@@ -18,14 +18,15 @@
 </head>
     <body class="font-sans antialiased">
         <main>
-            <form>
+            <form action="{{url('/login')}}" method="post">
+                @csrf
                 <div class="login">
                     <div class="form-holder">
                         <div class="logo"><i class="fa fa-image"></i> المجلة  </div>
                         <h2>تسجيل دخول</h2>
                             <div class="form-input-container">
-                                <input type="text" class="form-input" id="username" name="username" placeholder="اسم المستخدم">
-                                <label for="username">اسم المستخدم</label>
+                                <input type="email" class="form-input" id="email" name="email" placeholder="اسم المستخدم">
+                                <label for="email">اسم المستخدم</label>
                             </div>
                             <div class="form-input-container">
                                 <input type="password" name="password" class="form-input" id="password" placeholder="كلمة السر">

@@ -8,6 +8,7 @@ use App\Models\Country;
 use App\Models\Magazine;
 use App\Models\Corporation;
 use Illuminate\Http\Request;
+use App\Http\Requests\API\AuthRequest;
 
 class AdminController extends Controller
 {
@@ -25,5 +26,21 @@ class AdminController extends Controller
            'corporation'=> Corporation::count(),
         ];
         return view('admin.index',compact('status'));
+    }
+    public function login(AuthRequest $request)
+    { 
+        if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
+        {
+            return redirect()->route('dashboard');
+            
+        } else {
+            return back()->with('error','your username and password are wrong.');
+        }
+    }
+    public function logout()
+    {
+        auth()->guard('admin')->logout();
+           
+        return redirect('/');
     }
 }
