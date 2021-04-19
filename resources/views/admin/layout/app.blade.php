@@ -31,6 +31,14 @@
                     </a>
                 </div>
             </div>
+            <div class="alert alert-error">
+                وراقيك يا طيب
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
+            <div class="alert alert-success">
+                مية مية تشم
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            </div>
             @yield('content')
         </main>
     </body>
