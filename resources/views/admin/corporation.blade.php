@@ -39,9 +39,11 @@
 
         <!-- Modal content -->
         <div class="modal-content">
+
             <div class="modal-header">
-                <h2>اضافة مؤسسة</h2>
                 <span class="close">&times;</span>
+                <h2 style="color: black">اضافة مؤسسة</h2>
+
             </div>
             <div class="modal-body">
                 <form action="{{url('/corporations')}}" method="post">

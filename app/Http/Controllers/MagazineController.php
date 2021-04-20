@@ -14,8 +14,8 @@ class MagazineController extends Controller
      */
     public function index()
     {
-        $magazines=Magazine::all();
-        return view();
+        $magazines=Magazine::paginate(7);
+        return view('admin.magazine.index',compact('magazines'));
     }
 
     /**
@@ -58,7 +58,7 @@ class MagazineController extends Controller
      */
     public function edit(Magazine $magazine)
     {
-        //
+        return view('admin.magazine.edit',compact('magazine'));
     }
 
     /**
@@ -70,7 +70,7 @@ class MagazineController extends Controller
      */
     public function update(Request $request, Magazine $magazine)
     {
-        //
+       
     }
 
     /**

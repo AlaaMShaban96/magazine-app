@@ -19,6 +19,8 @@ class CreateMagazinesTable extends Migration
             $table->tinyInteger('corporation_id')->unsigned();
             $table->tinyInteger('rating_id')->unsigned();
             $table->tinyInteger('country_id')->unsigned();
+            $table->boolean('available')->nullable()->default(false);
+            $table->boolean('status')->nullable()->default(false);
 
             $table->foreign('corporation_id')->references('id')->on('corporations')->onDelete('cascade');
             $table->foreign('rating_id')->references('id')->on('ratings')->onDelete('cascade');

@@ -31,14 +31,21 @@
                     </a>
                 </div>
             </div>
-            <div class="alert alert-error">
-                وراقيك يا طيب
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
-            <div class="alert alert-success">
-                مية مية تشم
-                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            </div>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-error">
+                        {{  $error}}
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                @endforeach
+            @endif
+            @if(Session::has('message'))
+                <div class="alert alert-success">
+                    {{ Session::get('message') }}
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                </div>
+            @endif
+           
             @yield('content')
         </main>
     </body>

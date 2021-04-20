@@ -38,6 +38,8 @@ class CountryController extends Controller
     public function store(CountryRequest $request)
     {
         Country::create($request->all());
+                Session::flash('message', 'تم إضافة  بنجاح'); 
+
         return redirect()->back();
     }
 
@@ -83,7 +85,8 @@ class CountryController extends Controller
      */
     public function destroy( Country $country)
     {   
-        $country->delete();
+        $country->delete(); 
+        Session::flash('message', 'تم الحذف بنجاح'); 
         return redirect('/countries');
     }
 }

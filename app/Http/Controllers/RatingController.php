@@ -38,6 +38,7 @@ class RatingController extends Controller
     public function store(RatingRequest $request)
     {
         Rating::create($request->all());
+        Session::flash('message', 'تم إضافة  بنجاح'); 
         return redirect()->back();
     }
 
@@ -83,7 +84,8 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        $rating->delete();
+        $rating->delete();  
+        Session::flash('message', 'تم الحذف بنجاح'); 
         return redirect('/ratings');
     }
 }

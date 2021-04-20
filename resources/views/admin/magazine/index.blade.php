@@ -19,31 +19,32 @@
             <td></td>
         </thead>
         <tbody>
-        @for($i=0;$i<10;$i++)
+            @forelse ($magazines as $item)
             <tr>
-                <td>مجلة</td>
-                <td>ليبيا</td>
-                <td>مؤسسة</td>
-                <td>تصنف</td>
-                <td>كاملة</td>
-                <td>متوافر</td>
-                <td><a href="{{url('/magazines/'.$i.'/folders')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">المجلدات</a></td>
+                <td>{{$item->name}}</td>
+                <td>{{$item->country->name}}</td>
+                <td>{{$item->corporation->name}}</td>
+                <td>{{$item->rating->name}}</td>
+                <td>{{$item->status?'كاملة':"غير كاملة"}}</td>
+                <td>{{$item->status?'متوفرة':"غير متوفرة"}}</td>
+                <td><a href="{{url('/magazines/'.$item->id.'/folders')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">المجلدات</a></td>
                 <td><form class="d-inline">
                         <button class="delete" type="submit"><i class="fa fa-trash"></i></button>
                     </form>
-                    <a class="edit" href="{{url('/magazines/'.$i)}}"><i class="fa fa-pencil "></i></a>
+                    <a class="edit" href="{{url('/magazines/'.$item->id)}}"><i class="fa fa-pencil "></i></a>
                 </td>
             </tr>
-        @endfor
+
+            @empty
+                <h1>welcome</h1>
+            @endforelse
+    
         </tbody>
 
     </table>
     <div class="table--footer">
-        <div class="pagination">
-            <a href="#" class="pagination-button active">1</a>
-            <a href="#" class="pagination-button">2</a>
-            <a href="#" class="pagination-button">...</a>
-        </div>
+        {{$magazines->links('vendor.pagination.semantic-ui')}}
+
     </div>
 
     <div id="createModal" class="modal">

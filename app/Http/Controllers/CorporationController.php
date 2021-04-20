@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Corporation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use App\Http\Requests\Corporation\CorporationRequest;
 
 class CorporationController extends Controller
@@ -38,6 +39,7 @@ class CorporationController extends Controller
     public function store(CorporationRequest $request)
     {
         Corporation::create($request->all());
+        Session::flash('message', 'تم إضافة  بنجاح'); 
         return redirect()->back();
     }
 
@@ -84,6 +86,7 @@ class CorporationController extends Controller
     public function destroy(Corporation $corporation)
     {
         $corporation->delete();
+        Session::flash('message', 'تم الحذف بنجاح'); 
        return redirect('/corporations');
     }
 }

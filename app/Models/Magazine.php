@@ -9,19 +9,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Magazine extends Model
-{
+{ 
     use HasFactory;
-    protected $fillable = ['name','corporation_id','rating_id','country_id'];
+    protected $fillable = ['name','available','status','corporation_id','rating_id','country_id'];
 
-    public function corporation(): BelongsTo
+    public function corporation()
     {
         return $this->belongsTo(Corporation::class);
     }
-    public function rating(): BelongsTo
+    public function rating()
     {
         return $this->belongsTo(Rating::class);
     }
-    public function country(): BelongsTo
+    public function country()
     {
         return $this->belongsTo(Country::class);
     }
