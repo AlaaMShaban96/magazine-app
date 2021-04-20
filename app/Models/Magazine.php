@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Magazine extends Model
 { 
     use HasFactory;
-    protected $fillable = ['name','available','status','corporation_id','rating_id','country_id'];
+    protected $fillable = ['name','image','available','status','corporation_id','rating_id','country_id'];
 
     public function corporation()
     {

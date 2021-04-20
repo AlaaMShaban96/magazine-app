@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
-
+    use HasFactory, Notifiable,HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
@@ -40,4 +40,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+  /**
+   * Get all of the reading for the User
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+   */
+  public function reading()
+  {
+      return $this->belongsToMany(Number::class,'reading')->withPivot('page_number');
+  }
 }

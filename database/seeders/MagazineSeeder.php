@@ -18,6 +18,7 @@ class MagazineSeeder extends Seeder
         DB::table('magazines')->insert([
             [
                 'name' =>' الادب و العلوم',
+                'image'=>'https://upload.wikimedia.org/wikipedia/en/9/9a/Attack_on_Titan_The_Final_Season_Key_Visual_2.png',
                 'corporation_id' =>1,
                 'rating_id' =>2,
                 'country_id' =>1,
@@ -26,6 +27,7 @@ class MagazineSeeder extends Seeder
             ],
             [
                 'name' =>'تبين لدراسات الفكرية ة التقافية',
+                'image'=>'https://upload.wikimedia.org/wikipedia/en/9/9a/Attack_on_Titan_The_Final_Season_Key_Visual_2.png',
                 'corporation_id' =>2,
                 'rating_id' =>2,
                 'country_id' =>2,
@@ -34,6 +36,7 @@ class MagazineSeeder extends Seeder
             ],
             [
                 'name' =>'هجوم العمالقة',
+                'image'=>'https://upload.wikimedia.org/wikipedia/en/9/9a/Attack_on_Titan_The_Final_Season_Key_Visual_2.png',
                 'corporation_id' =>4,
                 'rating_id' =>3,
                 'country_id' =>2,

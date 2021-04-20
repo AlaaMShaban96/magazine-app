@@ -16,6 +16,7 @@ class CreateMagazinesTable extends Migration
         Schema::create('magazines', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('image')->nullable();
             $table->tinyInteger('corporation_id')->unsigned();
             $table->tinyInteger('rating_id')->unsigned();
             $table->tinyInteger('country_id')->unsigned();

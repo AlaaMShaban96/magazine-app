@@ -15,6 +15,8 @@ class CreateNumbersTable extends Migration
     {
         Schema::create('numbers', function (Blueprint $table) {
             $table->id();
+            $table->string('pdf')->nullable()->default('text');
+            $table->bigInteger('number');
             $table->bigInteger('folder_id')->unsigned();
             $table->foreign('folder_id')->references('id')->on('folders')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

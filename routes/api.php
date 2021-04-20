@@ -20,5 +20,6 @@ use App\Http\Controllers\API\CorporationController;
 //     return $request->user();
 // });
 Route::post('/login',[AuthController::class,'login']);
+
 Route::resource('/corporation', CorporationController::class);
 Route::resource('/magazine', MagazineController::class);
