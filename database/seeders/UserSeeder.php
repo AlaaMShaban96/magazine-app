@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
                 [
                 'name' =>'user name',
-                'email' =>'test@test.ly',
+                'email' =>'test@test.ly`',
                 'email_verified_at' =>Carbon::now()->format('Y-m-d H:i:s'),
                 'password' =>Hash::make('1234'),
                 ]

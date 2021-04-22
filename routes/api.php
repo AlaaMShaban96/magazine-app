@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\FolderController;
+use App\Http\Controllers\API\MagazineController;
 use App\Http\Controllers\API\CorporationController;
 
 /*
@@ -20,6 +22,11 @@ use App\Http\Controllers\API\CorporationController;
 //     return $request->user();
 // });
 Route::post('/login',[AuthController::class,'login']);
+Route::get('/corporation',[CorporationController::class,'index']);
 
-Route::resource('/corporation', CorporationController::class);
-Route::resource('/magazine', MagazineController::class);
+Route::get('/magazine',[MagazineController::class,'index']);
+Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
+Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
+
+// Route::resource('/corporation', CorporationController::class);
+// Route::resource('/magazine', MagazineController::class);

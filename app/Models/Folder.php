@@ -20,4 +20,8 @@ class Folder extends Model
     {
         return $this->belongsTo(Magazine::class);
     }
+    public function numbers()
+    {
+        return $this->hasMany(Number::class);
+    }
 }

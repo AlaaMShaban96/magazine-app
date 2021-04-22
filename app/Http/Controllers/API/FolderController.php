@@ -5,19 +5,18 @@ namespace App\Http\Controllers\API;
 use App\Models\Magazine;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Magazine\MagazineResourc;
-use App\Http\Resources\Magazine\MagazineCollection;
+use App\Http\Resources\Folder\FolderCollection;
 
-class MagazineController extends Controller
+class FolderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Magazine $magazine)
     {
-        return new MagazineCollection(Magazine::filter($request->all())->get());
+        return new FolderCollection($magazine->folders);
     }
 
     /**
@@ -47,9 +46,9 @@ class MagazineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Magazine $magazine)
+    public function show($id)
     {
-       return new MagazineResourc($magazine);
+        //
     }
 
     /**
