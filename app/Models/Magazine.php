@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Magazine extends Model
-{ 
+{
     use HasFactory ,Filterable;
-    
+
     protected $fillable = ['name','image','available','status','corporation_id','rating_id','country_id'];
 
     public function corporation()
@@ -31,5 +31,9 @@ class Magazine extends Model
     public function folders()
     {
         return $this->hasMany(Folder::class);
+    }
+    public function numbers()
+    {
+        return $this->hasManyThrough(Number::class,Folder::class);
     }
 }

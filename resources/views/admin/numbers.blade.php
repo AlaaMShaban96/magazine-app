@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="nav">
-        <div><h2>اعداد مجلد 1 لمجلة تجريب</h2> <a href="{{url('/magazines')}}"><span>الرجوع للمجلة</span></a></div>
+        <div><h2>اعداد مجلد {{$folder->id}} لمجلة {{$folder->magazine->name}} </h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
 
         <a id="createModalOpen" href="#" class="button">اضافة عدد</a>
     </div>
@@ -13,24 +13,23 @@
             <td></td>
         </thead>
         <tbody>
-        @for($i=0;$i<10;$i++)
+        @foreach($numbers as $number)
             <tr>
-                <td> عدد {{$i }} </td>
-                <td><form class="d-inline">
+                <td> العدد {{$number->number}} </td>
+                <td>
+                    <form action="{{url('/numbers/'.$number->id)}}" class="d-inline" method="post">
+                        @csrf
+                        @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
                     </form>
                 </td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
 
     </table>
     <div class="table--footer">
-        <div class="pagination">
-            <a href="#" class="pagination-button active">1</a>
-            <a href="#" class="pagination-button">2</a>
-            <a href="#" class="pagination-button">...</a>
-        </div>
+        {{$numbers->links('vendor.pagination.semantic-ui')}}
     </div>
 
     <div id="createModal" class="modal">
@@ -42,12 +41,17 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{route('numbers',$folder->id)}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-holder">
                         <div class="form-input-container">
-                            <input type="text" name="name" class="form-input" id="nameField" placeholder="اسم العدد">
-                            <label for="nameField">اسم العدد</label>
+                            <input type="number" name="number" class="form-input" id="nameField" placeholder="اسم العدد">
+                            <label for="nameField">رقم العدد</label>
                         </div>
+                    </div>
+                    <div class="form-input-container">
+                        <input type="file" name="pdf" class="form-input" id="fileField" placeholder="ملف " >
+                        <label for="fileField"> pdf العدد</label>
                     </div>
                     <button type="submit" class="button button-wide modal-footer">اضافة عدد</button>
                 </form>

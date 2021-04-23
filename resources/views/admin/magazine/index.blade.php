@@ -1,3 +1,9 @@
+@php
+    $countries = App\Models\Country::all();
+    $corporations = App\Models\Corporation::all();
+    $ratings = App\Models\Rating::all();
+@endphp
+
 @extends('admin.layout.app')
 
 @section('content')
@@ -28,7 +34,9 @@
                 <td>{{$item->status?'كاملة':"غير كاملة"}}</td>
                 <td>{{$item->status?'متوفرة':"غير متوفرة"}}</td>
                 <td><a href="{{url('/magazines/'.$item->id.'/folders')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">المجلدات</a></td>
-                <td><form class="d-inline">
+                <td><form action="{{route('magazines',$item->id)}}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash"></i></button>
                     </form>
                     <a class="edit" href="{{url('/magazines/'.$item->id)}}"><i class="fa fa-pencil "></i></a>
@@ -38,7 +46,7 @@
             @empty
                 <h1>welcome</h1>
             @endforelse
-    
+
         </tbody>
 
     </table>
@@ -56,34 +64,45 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{url('/magazines')}}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-holder">
                         <div class="form-input-container">
                             <input type="text" name="name" class="form-input" id="nameField" placeholder="اسم المجلة">
                             <label for="nameField">اسم المجلة</label>
                         </div>
                         <div class="form-input-container">
-                            <select class="form-input" name="country" id="country">
-                                <option value="1">ليبيا</option>
+                            <input type="file" name="image" class="form-input" id="imageField" placeholder="صورة المجلة" >
+                            <label for="imageField"> صورة المجلة</label>
+                        </div>
+                        <div class="form-input-container">
+                            <select class="form-input" name="country_id" id="country">
+                                @foreach ($countries as $country)
+                                    <option value="{{$country->id}}" >{{$country->name}}</option>
+                                @endforeach
                             </select>
                             <label for="country">الدولة</label>
                         </div>
                         <div class="form-input-container">
-                            <select class="form-input" name="corporation" id="corporation">
-                                <option value="1">مؤسسة</option>
+                            <select class="form-input" name="corporation_id" id="corporation">
+                                @foreach ($corporations as $corporation)
+                                    <option value="{{$corporation->id}}" >{{$corporation->name}}</option>
+                                @endforeach
                             </select>
                             <label for="corporation">المؤسسة</label>
                         </div>
                         <div class="form-input-container">
-                            <select class="form-input" name="category" id="category">
-                                <option value="1">تصنيف</option>
+                            <select class="form-input" name="rating_id" id="category">
+                                @foreach ($ratings as $rating)
+                                    <option value="{{$rating->id}}" >{{$rating->name}}</option>
+                                @endforeach
                             </select>
                             <label for="category">التصنيف</label>
                         </div>
                         <div class="form-input-container">
-                            <input type="radio" value="1" name="avaliable" id="isAvaliable" />
+                            <input type="radio" value="1" name="available" id="isAvaliable" />
                             <label for="isAvaliable">كاملة</label>
-                            <input type="radio" value="0" name="avaliable" id="notAvaliable" />
+                            <input type="radio" value="0" name="available" id="notAvaliable" />
                             <label for="notAvaliable">غير كاملة</label>
                         </div>
                         <div class="form-input-container">

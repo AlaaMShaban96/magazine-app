@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Requests\Country\CountryRequest;
+use Illuminate\Support\Facades\Session;
 
 class CountryController extends Controller
 {
@@ -38,8 +39,7 @@ class CountryController extends Controller
     public function store(CountryRequest $request)
     {
         Country::create($request->all());
-                Session::flash('message', 'تم إضافة  بنجاح'); 
-
+        Session::flash('message', 'تم إضافة  بنجاح');
         return redirect()->back();
     }
 
@@ -62,7 +62,7 @@ class CountryController extends Controller
      */
     public function edit(Country $country)
     {
-        //
+        return view('admin.countriesEdit',compact('country'));
     }
 
     /**
@@ -72,9 +72,11 @@ class CountryController extends Controller
      * @param  \App\Models\Country  $country
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Country $country)
+    public function update(CountryRequest $request, Country $country)
     {
-        //
+        $country->update($request->all());
+        Session::flash('message', 'تم تعديل بنجاح');
+        return redirect()->back();
     }
 
     /**
@@ -84,9 +86,9 @@ class CountryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy( Country $country)
-    {   
-        $country->delete(); 
-        Session::flash('message', 'تم الحذف بنجاح'); 
+    {
+        $country->delete();
+        Session::flash('message', 'تم الحذف بنجاح');
         return redirect('/countries');
     }
 }

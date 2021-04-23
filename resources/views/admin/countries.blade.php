@@ -21,7 +21,7 @@
                         @csrf
                         @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
-                        <a class="edit" href="#"><i class="fa fa-pencil "></i></a>
+                        <a class="edit" href="{{route('countries',$country->id)}}"><i class="fa fa-pencil "></i></a>
 
                     </form>
                 </td>

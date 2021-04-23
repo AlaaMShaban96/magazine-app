@@ -6,6 +6,8 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\MagazineController;
 use App\Http\Controllers\CorporationController;
+use App\Http\Controllers\FolderController;
+use App\Http\Controllers\NumberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +24,7 @@ Route::get('/', [AdminController::class,'index'])->name('login');
 Route::post('/login', [AdminController::class,'login']);
 
 Route::middleware(['adminauth'])->group(function () {
-    
+
     Route::get('/logout', [AdminController::class,'logout'])->name('logout');
 
     Route::get('/dashboard', [AdminController::class,'show'])->name('dashboard');
@@ -30,14 +32,20 @@ Route::middleware(['adminauth'])->group(function () {
     Route::get('/rating', [RatingController::class,'index']);
 
     Route::get('/countries', [CountryController::class,'index'])->name('countries');
+    Route::get('/countries/{country}', [CountryController::class,'edit'])->name('countries');
+    Route::put('/countries/{country}', [CountryController::class,'update']);
     Route::post('/countries', [CountryController::class,'store']);
     Route::delete('/countries/{country}',[CountryController::class,'destroy']);
 
     Route::get('/corporations', [CorporationController::class,'index'])->name('corporations');
+    Route::get('/corporations/{corporation}', [CorporationController::class,'edit'])->name('corporations');
     Route::post('/corporations', [CorporationController::class,'store']);
+    Route::put('/corporations/{corporation}', [CorporationController::class,'update']);
     Route::delete('/corporations/{corporation}',[CorporationController::class,'destroy']);
 
     Route::get('/ratings', [RatingController::class,'index'])->name('ratings');
+    Route::get('/ratings/{rating}', [RatingController::class,'edit'])->name('ratings');
+    Route::put('/ratings/{rating}', [RatingController::class,'update']);
     Route::post('/ratings', [RatingController::class,'store']);
     Route::delete('/ratings/{rating}',[RatingController::class,'destroy']);
 
@@ -46,5 +54,14 @@ Route::middleware(['adminauth'])->group(function () {
     Route::put('/magazines/{magazine}', [MagazineController::class,'update']);
     Route::post('/magazines', [MagazineController::class,'store']);
     Route::delete('/magazines/{magazine}',[MagazineController::class,'destroy']);
+
+    Route::get('/magazines/{magazine}/folders',[MagazineController::class,'folders'])->name('folders');
+    Route::post('/magazines/{magazine}/folders',[FolderController::class,'store'])->name('folders');
+    Route::delete('/folders/{folder}',[FolderController::class,'destroy']);
+
+    Route::get('/folders/{folder}/numbers',[FolderController::class,'numbers'])->name('numbers');
+    Route::post('/folders/{folder}/numbers',[NumberController::class,'store'])->name('numbers');
+    Route::delete('/numbers/{number}',[NumberController::class,'destroy']);
+
 
 });

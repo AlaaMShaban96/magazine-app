@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Magazine\MagazineRequest;
 use App\Models\Magazine;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 class MagazineController extends Controller
 {
@@ -34,9 +37,18 @@ class MagazineController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MagazineRequest $request)
     {
-        //
+
+        $fileName = time().'.'.$request->image->extension();
+        $request->image->move(public_path('magazineImages'), $fileName);
+
+        Magazine::create(array_merge (
+            $request->except('image'),
+            ['image' => $fileName]
+        ));
+        Session::flash('message', 'تم إضافة  بنجاح');
+        return redirect()->back();
     }
 
     /**
@@ -68,9 +80,24 @@ class MagazineController extends Controller
      * @param  \App\Models\Magazine  $magazine
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Magazine $magazine)
+    public function update(MagazineRequest $request, Magazine $magazine)
     {
-       
+        $fileName = $magazine->image;
+        if($request->has('image')){
+            $fileName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('magazineImages'), $fileName);
+
+            $destinationPath = 'magazineImages/'.$magazine->image;
+            if(file_exists($destinationPath)){
+                File::delete($destinationPath);
+            }
+        }
+      $magazine->update(array_merge (
+            $request->except('image'),
+            ['image' => $fileName]
+        ));
+        Session::flash('message', 'تم لتعديل  بنجاح');
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +108,29 @@ class MagazineController extends Controller
      */
     public function destroy(Magazine $magazine)
     {
-        //
+        $destinationPath = 'magazineImages/'.$magazine->image;
+        if(file_exists($destinationPath)){
+            File::delete($destinationPath);
+        }
+
+        foreach ($magazine->numbers as $number){
+            $destinationPath = 'numberFiles/'.$number->pdf;
+            if(file_exists($destinationPath)){
+                File::delete($destinationPath);
+            }
+            $number->delete();
+        }
+        $magazine->folders()->delete();
+        $magazine->delete();
+        Session::flash('message', 'تم الحذف  بنجاح');
+        return redirect()->back();
     }
+
+    public function folders(Magazine $magazine)
+    {
+        $folders = $magazine->folders()->paginate(7);
+        return view('admin.folders',compact('magazine','folders'));
+
+    }
+
 }
