@@ -22,11 +22,17 @@ use App\Http\Controllers\API\CorporationController;
 //     return $request->user();
 // });
 Route::post('/login',[AuthController::class,'login']);
-Route::get('/corporation',[CorporationController::class,'index']);
 
-Route::get('/magazine',[MagazineController::class,'index']);
-Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
-Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
+Route::middleware('auth:api')->group(function () {
+    
+    Route::get('/index',[AuthController::class,'index']);
+    Route::get('/corporation',[CorporationController::class,'index']);
+
+    Route::get('/magazine',[MagazineController::class,'index']);
+    Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
+    Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
+
+});
 
 // Route::resource('/corporation', CorporationController::class);
 // Route::resource('/magazine', MagazineController::class);

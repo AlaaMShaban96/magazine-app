@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Folder extends Model
 {
     use HasFactory;
-    protected $fillable = ['magazine_id'];
+    protected $fillable = ['magazine_id','folder_number'];
 
     /**
      * Get the Magazine that owns the Folder
