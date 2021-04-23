@@ -15,6 +15,7 @@ class CreateFoldersTable extends Migration
     {
         Schema::create('folders', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('folder_number');
             $table->bigInteger('magazine_id')->unsigned();
             $table->foreign('magazine_id')->references('id')->on('magazines')->onUpdate('cascade')->onDelete('cascade');
 

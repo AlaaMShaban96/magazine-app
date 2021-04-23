@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Folder;
+namespace App\Http\Resources\Number;
 
-use App\Http\Resources\Number\NumberCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FolderResource extends JsonResource
+class NumberResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +16,7 @@ class FolderResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'folder_number'=>$this->folder_number,
-            'numbers'=> new NumberCollection($this->numbers),
+            'date'=>$this->id,
         ];
     }
 }
