@@ -24,7 +24,7 @@
             <h2>مؤسسة</h2>
         </div>
         <div class="card">
-            <i class="fa fa-grip-lines"></i>
+            <i class="fa fa-star"></i>
             <span>{{$status['rating']}}</span>
             <h2>تصنيف</h2>
         </div>

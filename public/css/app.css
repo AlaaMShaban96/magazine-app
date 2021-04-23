@@ -224,16 +224,19 @@ td .edit {
     background-color: #fefefe;
     margin: 75px auto;
     width: 400px;
-    height: 300px;
+    height: 350px;
     border-radius: 5px;
 }
 .modal__tall{
-    height: 650px;
+    height: 700px;
+}
+.modal__shortmargin {
+    margin:40px auto;
 }
 .modal-header {
     padding:10px 20px;
     border-bottom:1px solid rgba(0,0,0,0.2);
-    color: white;
+    /*! color: white; */
     display:flex;
     justify-content: space-between;
     align-items: center;
@@ -368,4 +371,12 @@ td .edit {
 /* When moving the mouse over the close button */
 .closebtn:hover {
     color: black;
+}
+
+.header__backbutton h2{
+    display: inline;
+    margin-left: 10px;
+}
+.header__backbutton a{
+    color:#336CFB;
 }

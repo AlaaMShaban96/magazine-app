@@ -39,7 +39,7 @@ class CorporationController extends Controller
     public function store(CorporationRequest $request)
     {
         Corporation::create($request->all());
-        Session::flash('message', 'تم إضافة  بنجاح'); 
+        Session::flash('message', 'تم إضافة  بنجاح');
         return redirect()->back();
     }
 
@@ -62,7 +62,7 @@ class CorporationController extends Controller
      */
     public function edit(Corporation $corporation)
     {
-        //
+        return view('admin.corporationEdit',compact('corporation'));
     }
 
     /**
@@ -72,9 +72,11 @@ class CorporationController extends Controller
      * @param  \App\Models\Corporation  $corporation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Corporation $corporation)
+    public function update(CorporationRequest $request, Corporation $corporation)
     {
-        //
+        $corporation->update($request->all());
+        Session::flash('message', 'تم تعديل بنجاح');
+        return redirect()->back();
     }
 
     /**
@@ -86,7 +88,7 @@ class CorporationController extends Controller
     public function destroy(Corporation $corporation)
     {
         $corporation->delete();
-        Session::flash('message', 'تم الحذف بنجاح'); 
+        Session::flash('message', 'تم الحذف بنجاح');
        return redirect('/corporations');
     }
 }

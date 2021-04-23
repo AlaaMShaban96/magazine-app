@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rating;
 use Illuminate\Http\Request;
 use App\Http\Requests\Rating\RatingRequest;
+use Illuminate\Support\Facades\Session;
 
 class RatingController extends Controller
 {
@@ -38,7 +39,7 @@ class RatingController extends Controller
     public function store(RatingRequest $request)
     {
         Rating::create($request->all());
-        Session::flash('message', 'تم إضافة  بنجاح'); 
+        Session::flash('message', 'تم إضافة  بنجاح');
         return redirect()->back();
     }
 
@@ -61,7 +62,8 @@ class RatingController extends Controller
      */
     public function edit(Rating $rating)
     {
-        //
+        return view('admin.ratingsEdit',compact('rating'));
+
     }
 
     /**
@@ -71,9 +73,11 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rating $rating)
+    public function update(RatingRequest $request, Rating $rating)
     {
-        //
+        $rating->update($request->all());
+        Session::flash('message', 'تم تعديل بنجاح');
+        return redirect()->back();
     }
 
     /**
@@ -84,8 +88,8 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        $rating->delete();  
-        Session::flash('message', 'تم الحذف بنجاح'); 
+        $rating->delete();
+        Session::flash('message', 'تم الحذف بنجاح');
         return redirect('/ratings');
     }
 }

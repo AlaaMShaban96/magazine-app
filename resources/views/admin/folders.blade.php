@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="nav">
-        <div><h2>مجلدات لمجلة تجريب</h2> <a href="{{url('/magazines')}}"><span>الرجوع للمجلة</span></a></div>
+        <div><h2> مجلدات لمجلة {{$magazine->name}}</h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
 
         <a id="createModalOpen" href="#" class="button">اضافة مجلد</a>
     </div>
@@ -14,25 +14,23 @@
             <td></td>
         </thead>
         <tbody>
-        @for($i=0;$i<10;$i++)
+        @foreach($folders as $folder)
             <tr>
-                <td> مجلد {{$i }} </td>
-                <td><a href="{{url('/magazines/'.$i.'/numbers')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">الاعداد</a></td>
-                <td><form class="d-inline">
+                <td>  مجلد{{$folder->id}}</td>
+                <td><a href="{{url('/folders/'.$folder->id.'/numbers')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">الاعداد</a></td>
+                <td><form action="{{url('/folders/'.$folder->id)}}" class="d-inline" method="post">
+                        @csrf
+                        @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
                     </form>
                 </td>
             </tr>
-        @endfor
+        @endforeach
         </tbody>
 
     </table>
     <div class="table--footer">
-        <div class="pagination">
-            <a href="#" class="pagination-button active">1</a>
-            <a href="#" class="pagination-button">2</a>
-            <a href="#" class="pagination-button">...</a>
-        </div>
+        {{$folders->links('vendor.pagination.semantic-ui')}}
     </div>
 
     <div id="createModal" class="modal">
@@ -44,12 +42,9 @@
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <form>
+                <form action="{{route('folders',$magazine->id)}}" method="POST">
+                    @csrf
                     <div class="form-holder">
-                        <div class="form-input-container">
-                            <input type="text" name="name" class="form-input" id="nameField" placeholder="اسم المجلد">
-                            <label for="nameField">اسم المجلد</label>
-                        </div>
                     </div>
                     <button type="submit" class="button button-wide modal-footer">اضافة مجلد</button>
                 </form>
