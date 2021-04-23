@@ -14,12 +14,13 @@ class NumberController extends Controller
     {
         $request->validate([
             'pdf' => 'required|mimes:pdf',
-        ]);
+        ],['pdf.*' => 'يجب ادخال ملف pdf']);
         $fileName = time().'.'.$request->pdf->extension();
         $request->pdf->move(public_path('numberFiles'), $fileName);
 
         $folder->numbers()->create([
             'number'=> $request->number,
+            'edition' => $request->edition,
             'pdf' => $fileName
         ]);
         Session::flash('message', 'تم إضافة  بنجاح');

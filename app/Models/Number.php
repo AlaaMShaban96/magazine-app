@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Number extends Model
 {
     use HasFactory;
-    protected $fillable = ['pdf','folder_id','number'];
+    protected $fillable = ['pdf','folder_id','number','edition'];
     /**
      * Get the Folder that owns the Number
      *

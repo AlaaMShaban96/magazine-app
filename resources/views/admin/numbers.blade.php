@@ -9,13 +9,16 @@
     </div>
     <table>
         <thead>
-            <td>اسم العدد</td>
+        <td>اسم العدد</td>
+        <td>اصدار العدد</td>
             <td></td>
         </thead>
         <tbody>
         @foreach($numbers as $number)
             <tr>
                 <td> العدد {{$number->number}} </td>
+                <td>  {{$number->edition}} </td>
+
                 <td>
                     <form action="{{url('/numbers/'.$number->id)}}" class="d-inline" method="post">
                         @csrf
@@ -35,7 +38,7 @@
     <div id="createModal" class="modal">
 
         <!-- Modal content -->
-        <div class="modal-content">
+        <div class="modal-content" style="height: 420px;">
             <div class="modal-header">
                 <h2>اضافة عدد</h2>
                 <span class="close">&times;</span>
@@ -47,6 +50,12 @@
                         <div class="form-input-container">
                             <input type="number" name="number" class="form-input" id="nameField" placeholder="اسم العدد">
                             <label for="nameField">رقم العدد</label>
+                        </div>
+                    </div>
+                    <div class="form-holder">
+                        <div class="form-input-container">
+                            <input type="date" name="edition" class="form-input" id="editionField" placeholder="اصدار العدد">
+                            <label for="editionField">اصدار العدد</label>
                         </div>
                     </div>
                     <div class="form-input-container">

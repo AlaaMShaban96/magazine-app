@@ -19,6 +19,7 @@ class CreateNumbersTable extends Migration
             $table->bigInteger('number');
             $table->bigInteger('folder_id')->unsigned();
             $table->foreign('folder_id')->references('id')->on('folders')->onUpdate('cascade')->onDelete('cascade');
+            $table->date('edition');
             $table->timestamps();
         });
     }
