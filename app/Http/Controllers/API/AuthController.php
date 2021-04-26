@@ -27,9 +27,11 @@ class AuthController extends Controller
             if (auth()->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
 
                     if (Hash::check($request->password, $user->password)) {
-                        $token = $user->createToken('Laravel Password Grant Client')->accessToken;
-                    $user->api_token=$token;
+                        $tokenResult = $user->createToken('Laravel Password Grant Client');
+                        $token = $tokenResult->token;
+                        $user->api_token=$token;
                     $user->save();
+                    $token->save();
                         return new UserResourc($user);
                     }
             } else {
