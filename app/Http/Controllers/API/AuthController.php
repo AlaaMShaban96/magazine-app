@@ -24,17 +24,15 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
         // dd($user);
         if ($user) {
-            Auth::attempt(['email' => $request['email'], 'password' => $request['password']]);
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
+                
 
-            // if (auth()->attempt(['email' => $request->input('email'), 'password' => $request->input('password')])){
-                    if (Hash::check($request->password, $user->password)) {
-                        $tokenResult = $user->createToken('Laravel Password Grant Client');
-                        $token = $tokenResult->token;
-                        $user->api_token=$token;
-                    $user->save();
-                    $token->save();
-                        return new UserResourc($user);
-                    // }
+            if (Hash::check($request->password, $user->password)) {
+                $token = $user->createToken('a')->accessToken;
+               $user->api_token=$token;
+               $user->save();
+                return new UserResourc($user);
+            }
             } else {
                 $response = ["message" => "Password mismatch"];
                 return response($response, 422);
