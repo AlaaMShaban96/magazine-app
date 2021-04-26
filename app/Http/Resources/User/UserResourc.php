@@ -20,7 +20,7 @@ class UserResourc extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
-            'token'=>$this->api_token,
+            'token'=>$this->createToken('Laravel Password Grant Client')->accessToken,
         ];
     }
 }
