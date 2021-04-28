@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function index(Request $request)
     { 
         // dd(auth('api')->user());
-     return new IndexResource(auth('api')->user());
+     return new IndexResource(auth()->user());
     }
     public function login(AuthRequest $request)
     { 
@@ -29,7 +29,7 @@ class AuthController extends Controller
                 Please try again']);
             }
     
-            $token = auth()->user()->createToken('API Token')->accessToken;
+            $token = auth()->user()->createToken('API Token')->plainTextToken;
 
                $user->api_token=$token;
                $user->save();

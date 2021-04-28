@@ -23,7 +23,7 @@ use App\Http\Controllers\API\CorporationController;
 // });
 Route::post('/login',[AuthController::class,'login']);
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     
     Route::get('/index',[AuthController::class,'index']);
     Route::get('/corporation',[CorporationController::class,'index']);
