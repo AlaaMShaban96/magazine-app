@@ -24,19 +24,18 @@ class AuthController extends Controller
         $user = User::where('email', $request->email)->first();
         // dd($user);
         if ($user) {
-            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password']])){
-                
+            if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password])) {
+                return response(['error_message' => 'Incorrect Details. 
+                Please try again']);
+            }
+    
+            $token = auth()->user()->createToken('API Token')->accessToken;
 
-            if (Hash::check($request->password, $user->password)) {
-                $token = $user->createToken('a')->accessToken;
                $user->api_token=$token;
                $user->save();
                 return new UserResourc($user);
-            }
-            } else {
-                $response = ["message" => "Password mismatch"];
-                return response($response, 422);
-            }
+            
+           
         } else {
             $response = ["message" =>'User does not exist'];
             return response($response, 422);
