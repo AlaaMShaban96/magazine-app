@@ -40,5 +40,6 @@ class AuthController extends Controller
             $response = ["message" =>'User does not exist'];
             return response($response, 422);
         }
+        
     }
 }
