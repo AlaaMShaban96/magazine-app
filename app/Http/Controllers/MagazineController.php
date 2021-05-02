@@ -7,6 +7,8 @@ use App\Models\Magazine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+
 
 class MagazineController extends Controller
 {
@@ -41,8 +43,11 @@ class MagazineController extends Controller
     {
 
         $fileName = time().'.'.$request->image->extension();
-        $request->image->move(public_path('magazineImages'), $fileName);
-
+        $request->image->storeAs(
+            'images',
+            $fileName,
+            'public'
+        );
         Magazine::create(array_merge (
             $request->except('image'),
             ['image' => $fileName]
@@ -85,11 +90,14 @@ class MagazineController extends Controller
         $fileName = $magazine->image;
         if($request->has('image')){
             $fileName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('magazineImages'), $fileName);
-
-            $destinationPath = 'magazineImages/'.$magazine->image;
-            if(file_exists($destinationPath)){
-                File::delete($destinationPath);
+            $request->image->storeAs(
+                'images',
+                $fileName,
+                'public'
+            );
+            $destinationPath = 'images/'.$magazine->image;
+            if(Storage::disk('public')->exists($destinationPath)){
+                Storage::disk('public')->delete($destinationPath);
             }
         }
       $magazine->update(array_merge (
@@ -108,15 +116,15 @@ class MagazineController extends Controller
      */
     public function destroy(Magazine $magazine)
     {
-        $destinationPath = 'magazineImages/'.$magazine->image;
-        if(file_exists($destinationPath)){
-            File::delete($destinationPath);
+        $destinationPath = 'images/'.$magazine->image;
+        if(Storage::disk('public')->exists($destinationPath)){
+            Storage::disk('public')->delete($destinationPath);
         }
 
         foreach ($magazine->numbers as $number){
-            $destinationPath = 'numberFiles/'.$number->pdf;
-            if(file_exists($destinationPath)){
-                File::delete($destinationPath);
+            $destinationPath = 'pdf/'.$number->pdf;
+            if(Storage::disk('public')->exists($destinationPath)){
+                Storage::disk('public')->delete($destinationPath);
             }
             $number->delete();
         }

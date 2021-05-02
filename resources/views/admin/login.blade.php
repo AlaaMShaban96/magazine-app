@@ -18,6 +18,14 @@
 </head>
     <body class="font-sans antialiased">
         <main>
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-error">
+                        {{  $error}}
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                @endforeach
+            @endif
             <form action="{{url('/login')}}" method="post">
                 @csrf
                 <div class="login">

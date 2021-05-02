@@ -14,7 +14,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        
+
         return view('admin.login');
     }
     public function show()
@@ -28,19 +28,22 @@ class AdminController extends Controller
         return view('admin.index',compact('status'));
     }
     public function login(AuthRequest $request)
-    { 
+    {
         if (auth()->guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password')]))
         {
             return redirect()->route('dashboard');
-            
+
         } else {
-            return back()->with('error','your username and password are wrong.');
+            return back()->withErrors('كلمة السر او اسم المستخدم خطا ');
         }
     }
     public function logout()
     {
         auth()->guard('admin')->logout();
-           
+
         return redirect('/');
     }
 }
+
+
+

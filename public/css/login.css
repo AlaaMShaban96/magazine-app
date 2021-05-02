@@ -93,3 +93,34 @@ body{
     margin:20px;
 }
 
+.alert {
+    padding: 20px;
+    background-color: #f44336; /* Red */
+    color: white;
+    margin-bottom: 15px;
+    text-align:right;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+.alert-error {
+    background: #FF6760;
+}
+.alert-success {
+    background: #16D090;
+}
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: black;
+}

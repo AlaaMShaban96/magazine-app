@@ -26,6 +26,7 @@
                         <label for="nameField">اسم المجلة</label>
                     </div>
                    <div class="form-input-container">
+                       <a href="{{Storage::url('images/'.$magazine->image) }}" style="display:block;margin: 10px;"><img class="thumbnail" src="{{Storage::url('images/'.$magazine->image) }}" width="100" height="100" /></a>
                        <input type="file" name="image" class="form-input" id="imageField" placeholder="صورة المجلة" >
                        <label for="imageField"> صورة المجلة</label>
                    </div>

@@ -7,6 +7,7 @@ use App\Models\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class NumberController extends Controller
 {
@@ -16,7 +17,11 @@ class NumberController extends Controller
             'pdf' => 'required|mimes:pdf',
         ],['pdf.*' => 'يجب ادخال ملف pdf']);
         $fileName = time().'.'.$request->pdf->extension();
-        $request->pdf->move(public_path('numberFiles'), $fileName);
+        $request->image->storeAs(
+            'pdf',
+            $fileName,
+            'public'
+        );
 
         $folder->numbers()->create([
             'number'=> $request->number,
@@ -29,9 +34,9 @@ class NumberController extends Controller
 
     public function destroy(Number $number)
     {
-        $destinationPath = 'numberFiles/'.$number->pdf;
-        if(file_exists($destinationPath)){
-            File::delete($destinationPath);
+        $destinationPath = 'pdf/'.$number->pdf;
+        if(Storage::disk('public')->exists($destinationPath)){
+            Storage::disk('public')->delete($destinationPath);
         }
         $number->delete();
         Session::flash('message', 'تم الحذف  بنجاح');
