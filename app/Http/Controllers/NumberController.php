@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Folder;
 use App\Models\Number;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -11,22 +12,16 @@ use Illuminate\Support\Facades\Storage;
 
 class NumberController extends Controller
 {
-    public function store(Folder $folder , Request $request)
-    {
+    public function store( Folder $folder , Request $request)
+    { 
         $request->validate([
-            'pdf' => 'required|mimes:pdf',
+            'pdf' => 'required',
         ],['pdf.*' => 'يجب ادخال ملف pdf']);
-        $fileName = time().'.'.$request->pdf->extension();
-        $request->image->storeAs(
-            'pdf',
-            $fileName,
-            'public'
-        );
 
         $folder->numbers()->create([
             'number'=> $request->number,
             'edition' => $request->edition,
-            'pdf' => $fileName
+            'pdf' => $this->compress($request)
         ]);
         Session::flash('message', 'تم إضافة  بنجاح');
         return redirect()->back();
@@ -35,11 +30,15 @@ class NumberController extends Controller
     public function destroy(Number $number)
     {
         $destinationPath = 'pdf/'.$number->pdf;
-        if(Storage::disk('public')->exists($destinationPath)){
-            Storage::disk('public')->delete($destinationPath);
-        }
+        Storage::disk('s3')->delete($number->pdf);
         $number->delete();
         Session::flash('message', 'تم الحذف  بنجاح');
         return redirect()->back();
     }
+    private function compress(Request $request)
+    {
+        $photo =  $request->file('pdf')->store('magazine','s3');
+        return $photo;
+
+    } 
 }

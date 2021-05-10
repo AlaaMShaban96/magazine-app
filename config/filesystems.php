@@ -44,12 +44,14 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
+            'key' => env('AWS_ACCESS_KEY_ID','AKIAT5UXTI4AUWRNVVXR'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY','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'),
+            'region' => env('AWS_DEFAULT_REGION','eu-west-3'),
+            'bucket' => env('AWS_BUCKET','magazine-app'),
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
+            'visibility'=>'public',
+
         ],
 
     ],
