@@ -25,6 +25,8 @@
                         @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
                     </form>
+                    <a class="edit" href="{{route('numbers.update',$number->id)}}"><i class="fa fa-pencil "></i></a>
+
                 </td>
             </tr>
         @endforeach

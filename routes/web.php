@@ -62,6 +62,8 @@ Route::middleware(['adminauth'])->group(function () {
     Route::get('/folders/{folder}/numbers',[FolderController::class,'numbers'])->name('numbers');
     Route::post('/folders/{folder}/numbers',[NumberController::class,'store'])->name('numbers');
     Route::delete('/numbers/{number}',[NumberController::class,'destroy']);
+    Route::get('/numbers/{number}', [NumberController::class,'edit'])->name('numbers.update');
+    Route::put('/numbers/{number}', [NumberController::class,'update']);
 
 
 });
