@@ -16,7 +16,7 @@
         <tbody>
         @foreach($folders as $folder)
             <tr>
-                <td>  مجلد{{$folder->id}}</td>
+                <td>  مجلد{{$folder->folder_number}}</td>
                 <td><a href="{{url('/folders/'.$folder->id.'/numbers')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">الاعداد</a></td>
                 <td><form action="{{url('/folders/'.$folder->id)}}" class="d-inline" method="post">
                         @csrf
@@ -45,7 +45,12 @@
                 <form action="{{route('folders',$magazine->id)}}" method="POST">
                     @csrf
                     <div class="form-holder">
-                    </div>
+
+                        <div class="form-input-container">
+                            <input type="number" name="folder_number" required class="form-input" id="nameField" placeholder="رقم المجلد">
+                            <label for="nameField">رقم المجلد</label>
+                        </div>
+
                     <button type="submit" class="button button-wide modal-footer">اضافة مجلد</button>
                 </form>
             </div>
