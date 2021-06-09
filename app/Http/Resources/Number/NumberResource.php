@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Number;
 
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class NumberResource extends JsonResource
@@ -17,8 +16,7 @@ class NumberResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'edition'=>$this->edition,
-            'date'=> Storage::disk('s3')->url($this->pdf) ,
+            'date'=>$this->id,
         ];
     }
 }

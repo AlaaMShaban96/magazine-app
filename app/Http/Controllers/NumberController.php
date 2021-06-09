@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Number\NumberRequest;
 use App\Models\Folder;
 use App\Models\Number;
 use Illuminate\Support\Str;
@@ -12,11 +13,8 @@ use Illuminate\Support\Facades\Storage;
 
 class NumberController extends Controller
 {
-    public function store( Folder $folder , Request $request)
-    { 
-        $request->validate([
-            'pdf' => 'required',
-        ],['pdf.*' => 'يجب ادخال ملف pdf']);
+    public function store( Folder $folder , NumberRequest $request)
+    {
 
         $folder->numbers()->create([
             'number'=> $request->number,
@@ -29,7 +27,6 @@ class NumberController extends Controller
 
     public function destroy(Number $number)
     {
-        $destinationPath = 'pdf/'.$number->pdf;
         Storage::disk('s3')->delete($number->pdf);
         $number->delete();
         Session::flash('message', 'تم الحذف  بنجاح');
@@ -40,5 +37,24 @@ class NumberController extends Controller
         $photo =  $request->file('pdf')->store('magazine','s3');
         return $photo;
 
-    } 
+    }
+    public function edit(Number $number)
+    {
+        return view('admin.numbersEdit',compact('number'));
+    }
+
+    public function update(NumberRequest $request , Number $number)
+    {
+        $fileName = $number->pdf;
+        if($request->has('pdf'))
+        {
+            Storage::disk('s3')->delete($number->pdf);
+            $fileName = $this->compress($request);
+        }
+        $number->update(array_merge (
+            $request->except('pdf'),
+            ['pdf' => $fileName]
+        ));        Session::flash('message', 'تم تعديل بنجاح');
+        return redirect()->back();
+    }
 }
