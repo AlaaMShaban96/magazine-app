@@ -12,6 +12,6 @@ class NoteController extends Controller
     public function store(NoteRequest $request)
     {
         Note::create($request->all());
-        return true;
+        return response()->json(['date'=>"add notes Success"], 200);
     }
 }
