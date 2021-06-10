@@ -7,5 +7,6 @@
         <a href="{{url('/countries')}}" class="item {{ (\Request::route()->getName() == 'countries') ? 'active' : '' }}"><i class="fa fa-flag"></i>الدول </a>
         <a href="{{url('/corporations')}}" class="item {{ (\Request::route()->getName() == 'corporations') ? 'active' : '' }}"><i class="fa fa-briefcase"></i>المؤسسات </a>
         <a href="{{url('/ratings')}}" class="item {{ (\Request::route()->getName() == 'ratings') ? 'active' : '' }}"><i class="fa fa-star"></i>التصنيفات </a>
+        <a href="{{url('/notes')}}" class="item {{ (\Request::route()->getName() == 'notes') ? 'active' : '' }}"><i class="fa fa-sticky-note-o"></i>ملاحظات </a>
     </div>
 </section>

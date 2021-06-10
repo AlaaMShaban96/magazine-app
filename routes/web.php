@@ -1,13 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FolderController;
+use App\Http\Controllers\NumberController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\MagazineController;
 use App\Http\Controllers\CorporationController;
-use App\Http\Controllers\FolderController;
-use App\Http\Controllers\NumberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::middleware(['adminauth'])->group(function () {
     Route::get('/logout', [AdminController::class,'logout'])->name('logout');
 
     Route::get('/dashboard', [AdminController::class,'show'])->name('dashboard');
+    Route::get('/notes', [NoteController::class,'index'])->name('notes');
     // Route::get('/magazines', [MagazineController::class,'index']);
     Route::get('/rating', [RatingController::class,'index']);
 

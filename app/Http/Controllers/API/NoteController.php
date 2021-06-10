@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Models\Note;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Note\NoteRequest;
+
+class NoteController extends Controller
+{
+    public function store(NoteRequest $request)
+    {
+        Note::create($request->all());
+        return true;
+    }
+}

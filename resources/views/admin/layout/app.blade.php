@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
+        @yield('style')
     </head>
     <body class="font-sans antialiased">
         @include('admin.layout.header')
@@ -48,5 +48,7 @@
            
             @yield('content')
         </main>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+
     </body>
 </html>
