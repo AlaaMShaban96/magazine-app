@@ -23,9 +23,38 @@ class AuthRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'email' => 'required|email',
-            'password' => 'required',
-        ];
+        $arr = explode('@', $this->route()->getActionName());
+        $method = $arr[1];  // The controller method
+    
+        switch ($method) {
+            case 'login':
+                return [
+                    'email' => 'required|email',
+                    'password' => 'required',
+                ];
+                break;
+                
+            case 'register':
+                return [
+                    'email' => 'required|email',
+                    'name' => 'required',
+                    'password' => 'required',
+                    'phone_number' => 'required',
+                ];
+                break;
+            case 'reSendCode':
+                return [
+                    'email' => 'required|email',
+                ];
+                break;
+            case 'verified':
+                return [
+                    'email' => 'required|email',
+                    'password' => 'required',
+                    'code' => 'required',
+                ];
+                break;
+         }
+        
     }
 }

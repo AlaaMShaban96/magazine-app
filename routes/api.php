@@ -23,6 +23,9 @@ use App\Http\Controllers\API\CorporationController;
 //     return $request->user();
 // });
 Route::post('/login',[AuthController::class,'login']);
+Route::post('/register',[AuthController::class,'register']);
+Route::post('/reSendCode',[AuthController::class,'reSendCode']);
+Route::post('/verified',[AuthController::class,'verified']);
 
 Route::middleware('auth:sanctum')->group(function () {
     
