@@ -81,21 +81,19 @@ class AuthController extends Controller
     { 
         try {
                 $user= User::where('email', $request->email)->first();
-                if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password])) {
-                    return response(['error_message' => 'Incorrect Details. 
-                    Please try again']);
-                }
-                if ($user->verified_code==$request->code){
-                    $user->verified=true;
-                    $token = auth()->user()->createToken('API Token')->plainTextToken;
-                    $user->api_token=$token;
-                    $user->save();
-                    $response = ["message" =>'your email is verified','token'=>$token];
-                    return response($response, 200);
-                }else {
-                    $response = ["message" =>'your email is not verified'];
-                    return response($response, 200);
-                }
+                if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password]))
+                    return response(['error_message' => 'Incorrect Details. Please try again']);
+                
+                if (!($user->verified_code==$request->code)) 
+                    return response(["message" =>'your email is not verified'], 422);
+
+                $user->verified=true;
+                $token = auth()->user()->createToken('API Token')->plainTextToken;
+                $user->api_token=$token;
+                $user->save();
+                $response = ["message" =>'your email is verified','token'=>$token];
+                return response($response, 200);
+                
         } catch (\Throwable $th) {
                 $response = ["message" =>'have problem in verified '];
                 return response($response, 500);
