@@ -17,4 +17,8 @@ class MagazineFilter extends ModelFilter
     {
         return $this->where('name', 'LIKE', "%$name%");
     }
+    public function alphabet($alphabet)
+    {
+        return $this->where('name', 'LIKE',  $alphabet.'%');
+    }
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Country\CountryCollection;
+use App\Http\Resources\Magazine\MagazineCollection;
 
 class CountryController extends Controller
 {
@@ -14,28 +17,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+       return new CountryCollection(Country::all());
     }
 
     /**
@@ -44,9 +26,9 @@ class CountryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Country $country)
     {
-        //
+        return new MagazineCollection($country->magazine);
     }
 
     /**

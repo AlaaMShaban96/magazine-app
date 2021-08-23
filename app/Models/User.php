@@ -52,4 +52,8 @@ class User extends Authenticatable
   {
       return $this->belongsToMany(Number::class,'reading')->withPivot('page_number');
   }
+  public function saveMagazine()
+  {
+      return $this->belongsToMany(Save::class);
+  }
 }
