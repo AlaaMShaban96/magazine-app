@@ -16,6 +16,7 @@
         "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.10",
         "laravel/tinker": "^2.5",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "tucker-eric/eloquentfilter": "^2.4"
     },
     "require-dev": {
