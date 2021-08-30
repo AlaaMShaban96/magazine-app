@@ -10,9 +10,10 @@ use App\Http\Resources\Note\NoteCollection;
 
 class NoteController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return new NoteCollection(auth()->user()->notes);
+        $types=isset( $request->type)? $request->type:['not_working', 'incomplete','wrong_info','other','note'];
+        return new NoteCollection(auth()->user()->notes()->whereIn('title',  $types)->get());
     }
     public function store(NoteRequest $request)
     {
