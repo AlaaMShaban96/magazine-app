@@ -17,6 +17,7 @@ class NumberResource extends JsonResource
     {
         return [
             'id'=>$this->id,
+            'number'=>$this->number,
             'date'=>Storage::disk('s3')->url($this->pdf),
             // 'date'=>$this->pdf,
         ];
