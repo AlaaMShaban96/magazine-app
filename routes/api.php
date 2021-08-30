@@ -20,10 +20,13 @@ use App\Http\Controllers\API\CorporationController;
 |
 */
 
-
+//                      login
 Route::post('/login',[AuthController::class,'login']);
+//                      register
 Route::post('/register',[AuthController::class,'register']);
+//                      resend code to email verified
 Route::post('/reSendCode',[AuthController::class,'reSendCode']);
+//                      verified email 
 Route::post('/verified',[AuthController::class,'verified']);
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -34,15 +37,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/country',[CountryController::class,'index']);
     Route::get('/country/{country}/magazine',[CountryController::class,'show']);
 
-
-
+    //                      save magazine
+    Route::post('/magazine/{magazine}/save',[MagazineController::class,'save']);
+    Route::get('/magazine/save/show',[MagazineController::class,'showSave']);
+    //                      show magazine
     Route::get('/magazine',[MagazineController::class,'index']);
     Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
-    Route::post('/magazine/{magazine}/save',[MagazineController::class,'save']);
-    Route::get('/magazine/save',[MagazineController::class,'showSave']);
-
     Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
-
+    //                      save note
     Route::post('/note',[NoteController::class,'store']);
 
 });
