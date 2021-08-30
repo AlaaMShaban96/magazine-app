@@ -20,9 +20,7 @@ use App\Http\Controllers\API\CorporationController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/reSendCode',[AuthController::class,'reSendCode']);
@@ -40,7 +38,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/magazine',[MagazineController::class,'index']);
     Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
-    Route::get('/magazine/{magazine}/save',[MagazineController::class,'save']);
+    Route::post('/magazine/{magazine}/save',[MagazineController::class,'save']);
+    Route::get('/magazine/save',[MagazineController::class,'showSave']);
 
     Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
 

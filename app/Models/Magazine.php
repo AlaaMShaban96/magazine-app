@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Save;
 use App\Models\Rating;
 use App\Models\Country;
 use App\Models\Corporation;
@@ -31,6 +32,10 @@ class Magazine extends Model
     public function folders()
     {
         return $this->hasMany(Folder::class);
+    }
+    public function saveMagazine()
+    {
+        return $this->belongsToMany(Save::class);
     }
     public function numbers()
     {

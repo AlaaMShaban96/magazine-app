@@ -15,7 +15,7 @@ class Notes extends Migration
     {
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->enum('title', ['لايعمل', 'العدد ناقص','معلومة خاطئة','اخر','ملاحظة'])->nullable();
+            $table->enum('title', ['not_working', 'incomplete','wrong_info','other','note'])->nullable();
             $table->text('body')->nullable();
 
             $table->bigInteger('number_id')->unsigned();

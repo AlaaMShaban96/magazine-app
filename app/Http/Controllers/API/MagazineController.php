@@ -35,8 +35,13 @@ class MagazineController extends Controller
 
     public function save(Magazine $magazine)
     {
-        // dd( auth()->user());
-        //TODO
         Save::create(['magazine_id'=>$magazine->id,'user_id'=>auth()->user()->id]);
+    }
+    public function showSave()
+    {
+        //TODO
+        dd('kkkkkk');
+        // return auth()->user()->saveMagazine();
+        // Save::create(['magazine_id'=>$magazine->id,'user_id'=>auth()->user()->id]);
     }
 }
