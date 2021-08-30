@@ -11,6 +11,7 @@ class NoteController extends Controller
 {
     public function store(NoteRequest $request)
     {
+        $request["user_id"]=auth()->user()->id;
         Note::create($request->all());
         return response()->json(['date'=>"add notes Success"], 200);
     }

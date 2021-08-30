@@ -32,7 +32,7 @@ class NoteRequest extends FormRequest
                     'title' => 'required',
                     'body' => 'required|max:2048',
                     'number_id' => 'required',
-                    'user_id' => 'required',
+                    // 'user_id' => 'required',
                 ];
                 break;
 
@@ -41,7 +41,7 @@ class NoteRequest extends FormRequest
                     'title' => 'required',
                     'body' => 'required|max:2048',
                     'number_id' => 'required',
-                    'user_id' => 'required',
+                    // 'user_id' => 'required',
                 ];
                 break;
         }
