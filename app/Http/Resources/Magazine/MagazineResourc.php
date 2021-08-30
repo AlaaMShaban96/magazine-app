@@ -19,7 +19,7 @@ class MagazineResourc extends JsonResource
         return [
             "id"=>$this->id,
             "name"=>$this->name,
-            "image"=>$this->image,
+            "image"=>url('storage/images/' .$this->image),
             "corporation_id"=>$this->corporation->name,
             "rating_id"=>$this->rating->name,
             "country_id"=>$this->country->name,
