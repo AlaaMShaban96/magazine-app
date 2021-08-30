@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     use HasFactory;
-    public  $title=['not_working', 'incomplete','wrong_info','other','note'];
+    // public  $title=['not_working', 'incomplete','wrong_info','other','note'];
     protected $fillable = ['title','body','number_id','user_id'];
 
     /**

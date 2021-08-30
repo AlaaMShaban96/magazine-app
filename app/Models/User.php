@@ -56,4 +56,13 @@ class User extends Authenticatable
   {
       return $this->belongsToMany(Save::class);
   }
+  /**
+   * Get all of the notes for the User
+   *
+   * @return \Illuminate\Database\Eloquent\Relations\HasMany
+   */
+  public function notes()
+  {
+      return $this->hasMany(Note::class);
+  }
 }

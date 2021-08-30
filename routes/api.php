@@ -46,6 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
     //                      save note
     Route::post('/note',[NoteController::class,'store']);
+    Route::get('/note',[NoteController::class,'index']);
 
 });
 

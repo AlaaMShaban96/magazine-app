@@ -42,11 +42,6 @@ class MagazineController extends Controller
     }
     public function showSave(Request $request)
     {
-        //TODO
-        // dd( );
         return new MagazineCollection(Magazine::whereIn('id',Save::where('user_id',auth()->user()->id)->get()->pluck('magazine_id'))->get());
-
-        return auth()->user()->saveMagazine();
-        // Save::create(['magazine_id'=>$magazine->id,'user_id'=>auth()->user()->id]);
     }
 }
