@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\NoteController;
 use App\Http\Controllers\API\FolderController;
+use App\Http\Controllers\API\NumberController;
 use App\Http\Controllers\API\CountryController;
 use App\Http\Controllers\API\MagazineController;
 use App\Http\Controllers\API\CorporationController;
@@ -47,6 +48,11 @@ Route::middleware('auth:sanctum')->group(function () {
     //                      save note
     Route::post('/note',[NoteController::class,'store']);
     Route::get('/note',[NoteController::class,'index']);
+    //                       reading
+    Route::post('/number/{number}/reading',[NumberController::class,'reading']);
+    Route::post('/number/{number}/reading/remove',[NumberController::class,'remove']);
+
+
 
 });
 

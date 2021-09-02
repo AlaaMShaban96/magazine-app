@@ -4,6 +4,7 @@ namespace App\Http\Resources\Reading;
 
 use App\Models\Folder;
 use App\Models\Number;
+use App\Http\Resources\Number\NumberResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ReadingResource extends JsonResource
@@ -20,9 +21,9 @@ class ReadingResource extends JsonResource
             'page_number'=>$this->pivot->page_number,
             'magazine'=>[
                'name'=>Folder::find($this->folder_id)->magazine->name,
-               'image'=>Folder::find($this->folder_id)->magazine->image,
+               'image'=>url('storage/images/' .Folder::find($this->folder_id)->magazine->image),
             ],
-            'number'=>Number::find($this->pivot->number_id)->number,
+            'number'=>new NumberResource( Number::find($this->pivot->number_id)),
             
         ];
     }
