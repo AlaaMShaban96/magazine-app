@@ -22,12 +22,11 @@ class AuthController extends Controller
     { 
         try {
             $user = User::where('email', $request->email)->first();
-            if (!$user->verified) return response( ["message" =>'your email is not verified'], 422);
-            if (!$user) return response(["message" =>'User does not exist'], 422);
+            if (!$user->verified) return response( ["message" =>'لم يتم تأكيد البريد الالكتروني '], 422);
+            if (!$user) return response(["message" =>'المستخدم غير مسجل'], 422);
 
                 if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password])) {
-                    return response(['error_message' => 'Incorrect Details. 
-                    Please try again']);
+                    return response(['error_message' => 'Incorrect Details.  Please try again'], 422 );
                 }
         
                 $token = auth()->user()->createToken('API Token')->plainTextToken;
@@ -81,7 +80,7 @@ class AuthController extends Controller
     { 
         try {
                 $user= User::where('email', $request->email)->first();
-                if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password]))
+                if (!auth()->loginUsingId($user->id))
                     return response(['error_message' => 'Incorrect Details. Please try again']);
                 
                 if (!($user->verified_code==$request->code)) 
@@ -95,7 +94,7 @@ class AuthController extends Controller
                 return response($response, 200);
                 
         } catch (\Throwable $th) {
-                $response = ["message" =>'have problem in verified '];
+                $response = ["message" =>'have problem in verified '.$th];
                 return response($response, 500);
         }
       
