@@ -22,11 +22,11 @@ class AuthController extends Controller
     { 
         try {
             $user = User::where('email', $request->email)->first();
-            if (!$user->verified) return response( ["message" =>'لم يتم تأكيد البريد الالكتروني '], 422);
-            if (!$user) return response(["message" =>'المستخدم غير مسجل'], 422);
+            if (!$user->verified) return response( ["message" =>'لم يتم تأكيد البريد الالكتروني ','status'=>"NOT_VERIFIED"], 422);
+            if (!$user) return response(["message" =>'المستخدم غير مسجل','status'=>"NOT_REGISTRED"], 422);
 
                 if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password])) {
-                    return response(['error_message' => 'Incorrect Details.  Please try again'], 422 );
+                    return response(['message' => 'كلمة السر غير صحيحة','status'=>"INCORRECT_PASSWORD"], 422 );
                 }
         
                 $token = auth()->user()->createToken('API Token')->plainTextToken;
@@ -65,7 +65,7 @@ class AuthController extends Controller
                 $user= User::where('email', $request->email)->first();
                 $user->verified_code=rand(100,100000);
                 $user->save();
-                Event::dispatch(new SendMail($request['email']));
+                Event::dispatch(new SendMail($request['email'],'sendCodeToEmail'));
                 $response = ["message" =>'resend code to email'];
                 return response($response, 200);
         } catch (\Throwable $th) {
@@ -95,6 +95,39 @@ class AuthController extends Controller
                 
         } catch (\Throwable $th) {
                 $response = ["message" =>'have problem in verified '.$th];
+                return response($response, 500);
+        }
+      
+        
+        
+    }
+    public function sendCodeToResetPassword(AuthRequest $request)
+    { 
+        try {
+                $user= User::where('email', $request->email)->first();
+                $data=rand(100,100000);
+                $user->password=Hash::make($data);
+                $user->save();
+                Event::dispatch(new SendMail($request['email'],'sendCodeToResetPassword',$data));
+                $response = ["message" =>'send new password  to email'];
+                return response($response, 200);
+        } catch (\Throwable $th) {
+                $response = ["message" =>'have problem in reSendCode '];
+                return response($response, 500);
+        }
+      
+        
+        
+    }
+    public function resetPassword(AuthRequest $request)
+    { 
+        try {
+                auth()->user()->password=Hash::make($request->newPassword);
+                auth()->user()->save();
+                $response = ["message" =>'created new password '];
+                return response($response, 200);
+        } catch (\Throwable $th) {
+                $response = ["message" =>'have problem in reSendCode '];
                 return response($response, 500);
         }
       

@@ -29,9 +29,11 @@ Route::post('/register',[AuthController::class,'register']);
 Route::post('/reSendCode',[AuthController::class,'reSendCode']);
 //                      verified email 
 Route::post('/verified',[AuthController::class,'verified']);
+Route::post('/resetPasswordSend',[AuthController::class,'sendCodeToResetPassword']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    
+    Route::post('/resetPassword',[AuthController::class,'resetPassword']);
+
     Route::get('/index',[AuthController::class,'index']);
     Route::get('/corporation',[CorporationController::class,'index']);
 

@@ -50,8 +50,16 @@ class AuthRequest extends FormRequest
             case 'verified':
                 return [
                     'email' => 'required|email',
-                    // 'password' => 'required',
                     'code' => 'required',
+                ];
+                break;
+            case 'sendCodeToResetPassword':
+                return [
+                    'email' => 'required|email',
+                ];
+            case 'resetPassword':
+                return [
+                    'newPassword' => 'required',
                 ];
                 break;
          }

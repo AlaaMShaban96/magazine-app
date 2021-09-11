@@ -28,10 +28,25 @@ class SendMailFired
      */
     public function handle(SendMail $event)
     {
+        $user['data']=$event->data; 
         $user['user'] = User::where('email', $event->email)->get()->toArray();
-        Mail::send('emails.sendCodeToEmail', $user, function($message) use ($user) {
+        Mail::send('emails.'.$event->type, $user, function($message) use ($user,$event) {
             $message->to($user['user'][0]['email']);
-            $message->subject('Event Testing');
+            $message->subject($this->subject($event->type));
         });
+    }
+    private function subject($page)
+    {
+       switch ($page) {
+           case 'sendCodeToEmail':
+              return 'verifie your email';
+               break;
+           case 'sendCodeToResetPassword':
+              return 'reset your password ';
+               break;
+           default:
+               # code...
+               break;
+       }
     }
 }

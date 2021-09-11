@@ -21,9 +21,13 @@ class SendMail
      */
     use SerializesModels;
     public $email;
-    public function __construct($email)
+    public $type;
+    public $data;
+    public function __construct($email,$type,$data=null)
     {
         $this->email = $email;
+        $this->type = $type;
+        $this->data = $data;
     }
 
     /**
