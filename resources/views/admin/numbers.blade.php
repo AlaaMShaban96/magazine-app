@@ -1,3 +1,7 @@
+@php
+    $years = range(2000, strftime("%Y", time()));
+@endphp
+
 @extends('admin.layout.app')
 
 @section('content')
@@ -56,7 +60,13 @@
                     </div>
                     <div class="form-holder">
                         <div class="form-input-container">
-                            <input type="date" name="edition" class="form-input" id="editionField" placeholder="اصدار العدد">
+                            <select name="edition" class="form-input">
+                                @foreach ($years as $year)
+                                <option value="{{$year}}">{{$year}}</option>
+                                @endforeach
+                              </select>
+                              
+                            {{-- <input type="years" name="edition" class="form-input" id="editionField" placeholder="اصدار العدد" > --}}
                             <label for="editionField">اصدار العدد</label>
                         </div>
                     </div>
