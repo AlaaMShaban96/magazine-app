@@ -21,7 +21,7 @@
         @foreach($numbers as $number)
             <tr>
                 <td> العدد {{$number->number}} </td>
-                <td>  {{$number->edition}} </td>
+                <td>  {{date('Y', strtotime($number->edition))}} </td>
 
                 <td>
                     <form action="{{url('/numbers/'.$number->id)}}" class="d-inline" method="post">
