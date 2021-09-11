@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Number\NumberRequest;
+use Carbon\Carbon;
 use App\Models\Folder;
 use App\Models\Number;
 use Illuminate\Support\Str;
@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Number\NumberRequest;
 
 class NumberController extends Controller
 {
@@ -18,7 +19,7 @@ class NumberController extends Controller
 
         $folder->numbers()->create([
             'number'=> $request->number,
-            'edition' => $request->edition,
+            'edition' => Carbon::createFromFormat('Y',$request->edition),
             'pdf' => $this->compress($request)
         ]);
         Session::flash('message', 'تم إضافة  بنجاح');
