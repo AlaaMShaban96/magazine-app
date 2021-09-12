@@ -23,12 +23,14 @@ class AuthController extends Controller
         try {
             $user = User::where('email', $request->email)->first();
             if (!$user) return response(["message" =>'المستخدم غير مسجل','status'=>"NOT_REGISTRED"], 422);
-
+           
+            if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password])) {
+                return response(['message' => 'كلمة السر غير صحيحة','status'=>"INCORRECT_PASSWORD"], 422 );
+            }
+            
             if (!$user->verified) return response( ["message" =>'لم يتم تأكيد البريد الالكتروني ','status'=>"NOT_VERIFIED"], 422);
 
-                if (!auth()->attempt(['email'=>$request->email,'password'=>$request->password])) {
-                    return response(['message' => 'كلمة السر غير صحيحة','status'=>"INCORRECT_PASSWORD"], 422 );
-                }
+               
         
                 $token = auth()->user()->createToken('API Token')->plainTextToken;
                 $user->api_token=$token;
