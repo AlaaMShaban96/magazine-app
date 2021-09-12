@@ -14,8 +14,17 @@ use Event;
 use App\Events\SendMail;
 class AuthController extends Controller
 {
+    private function loginUser( $token)
+    {
+        $user = User::where('api_token', $token)->first();
+        auth()->loginUsingId($user->id);
+    }
     public function index(Request $request)
-    { 
+    {
+        
+        if ($request->bearerToken() != null){
+         $this->loginUser($request->bearerToken());
+        }
      return new IndexResource(auth()->user());
     }
     public function login(AuthRequest $request)
