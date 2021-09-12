@@ -30,23 +30,24 @@ Route::post('/reSendCode',[AuthController::class,'reSendCode']);
 //                      verified email 
 Route::post('/verified',[AuthController::class,'verified']);
 Route::post('/resetPasswordSend',[AuthController::class,'sendCodeToResetPassword']);
+Route::get('/index',[AuthController::class,'index']);
+Route::get('/corporation',[CorporationController::class,'index']);
+Route::get('/country',[CountryController::class,'index']);
+Route::get('/country/{country}/magazine',[CountryController::class,'show']);
+//                      show magazine
+Route::get('/magazine',[MagazineController::class,'index']);
+Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
+Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/resetPassword',[AuthController::class,'resetPassword']);
 
-    Route::get('/index',[AuthController::class,'index']);
-    Route::get('/corporation',[CorporationController::class,'index']);
 
-    Route::get('/country',[CountryController::class,'index']);
-    Route::get('/country/{country}/magazine',[CountryController::class,'show']);
 
     //                      save magazine
     Route::post('/magazine/{magazine}/save',[MagazineController::class,'save']);
     Route::get('/magazine/save/show',[MagazineController::class,'showSave']);
-    //                      show magazine
-    Route::get('/magazine',[MagazineController::class,'index']);
-    Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
-    Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
+ 
     //                      save note
     Route::post('/note',[NoteController::class,'store']);
     Route::get('/note',[NoteController::class,'index']);

@@ -18,8 +18,8 @@ class IndexResource extends JsonResource
     public function toArray($request)
     {
         return[
-            'reading'=>new ReadingCollection($this->reading),
-            'new_magazine'=> new MagazineCollection(Magazine::orderBy('id', 'desc')->limit(5)->get()),
+            'reading'=>new ReadingCollection(isset($this->reading)?$this->reading:[]),
+            'new_magazine'=> new MagazineCollection(Magazine::orderBy('id', 'desc')->limit(15)->get()),
         ];
     }
 }

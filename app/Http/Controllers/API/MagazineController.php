@@ -18,7 +18,7 @@ class MagazineController extends Controller
      */
     public function index(Request $request)
     {
-        return new MagazineCollection(Magazine::filter($request->all())->get());
+        return new MagazineCollection(Magazine::filter($request->all())->paginate(7));
     }
 
 
