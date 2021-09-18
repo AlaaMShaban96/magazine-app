@@ -35,7 +35,8 @@ class MagazineRequest extends FormRequest
                     'status' => 'required',
                     'corporation_id'=> 'required',
                     'rating_id' => 'required',
-                    'country_id' => 'required'
+                    'country_id' => 'required',
+                    'call_by' => 'required'
                 ];
                 break;
 
@@ -47,7 +48,9 @@ class MagazineRequest extends FormRequest
                     'status' => 'required',
                     'corporation_id'=> 'required',
                     'rating_id' => 'required',
-                    'country_id' => 'required'
+                    'country_id' => 'required',
+                    'call_by' => 'required',
+                    
                 ];
                 break;
         }

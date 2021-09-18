@@ -14,7 +14,7 @@ class Magazine extends Model
 {
     use HasFactory ,Filterable;
 
-    protected $fillable = ['name','image','available','status','corporation_id','rating_id','country_id'];
+    protected $fillable = ['name','call_by','image','available','status','corporation_id','rating_id','country_id'];
 
     public function corporation()
     {

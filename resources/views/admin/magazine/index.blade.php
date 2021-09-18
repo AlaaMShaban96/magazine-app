@@ -33,7 +33,7 @@
                 <td>{{$item->rating->name}}</td>
                 <td>{{$item->status?'كاملة':"غير كاملة"}}</td>
                 <td>{{$item->status?'متوفرة':"غير متوفرة"}}</td>
-                <td><a href="{{url('/magazines/'.$item->id.'/folders')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">المجلدات</a></td>
+                <td><a href="{{url('/magazines/'.$item->id.'/folders')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">{{$item->call_by=='years'?'السنوات':'المجلدات'}}</a></td>
                 <td><form action="{{route('magazines',$item->id)}}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
@@ -100,6 +100,14 @@
                             <label for="category">التصنيف</label>
                         </div>
                         <div class="form-input-container">
+                            <label for="call_by">ترقيم باستخدام : </label>
+
+                            <input type="radio" value="years" name="call_by" id="Going" />
+                            <label for="years">السنة</label>
+                            <input type="radio" value="folder" name="call_by" id="Stopped" />
+                            <label for="folder"> المجلد</label>
+                        </div>
+                        <div class="form-input-container">
                             <input type="radio" value="1" name="available" id="isAvaliable" />
                             <label for="isAvaliable">كاملة</label>
                             <input type="radio" value="0" name="available" id="notAvaliable" />
@@ -111,6 +119,7 @@
                             <input type="radio" value="0" name="status" id="Stopped" />
                             <label for="Stopped">غير متوفرة</label>
                         </div>
+                     
 
                     </div>
                     <button type="submit" class="button button-wide modal-footer">اضافة مجلة</button>

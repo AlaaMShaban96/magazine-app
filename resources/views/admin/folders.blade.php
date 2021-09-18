@@ -3,20 +3,20 @@
 @section('content')
 
     <div class="nav">
-        <div><h2> مجلدات لمجلة {{$magazine->name}}</h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
+        <div><h2> {{$magazine->call_by=='years'?' سنوات' :'مجلدات'}}  مجلة {{$magazine->name}}</h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
 
-        <a id="createModalOpen" href="#" class="button">اضافة مجلد</a>
+        <a id="createModalOpen" href="#" class="button">اضافة {{$magazine->call_by=='years'?' سنة' :'مجلد'}} </a>
     </div>
     <table>
         <thead>
-        <td>اسم المجلد</td>
+        <td>{{$magazine->call_by=='years'?' رقم السنة' :'رقم المجلد'}}</td>
         <td>الاعداد </td>
             <td></td>
         </thead>
         <tbody>
         @foreach($folders as $folder)
             <tr>
-                <td>  مجلد{{$folder->folder_number}}</td>
+                <td> {{$magazine->call_by=='years'?' سنة' :'مجلد'}} {{$folder->folder_number}}</td>
                 <td><a href="{{url('/folders/'.$folder->id.'/numbers')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">الاعداد</a></td>
                 <td><form action="{{url('/folders/'.$folder->id)}}" class="d-inline" method="post">
                         @csrf
@@ -38,7 +38,7 @@
         <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
-                <h2>اضافة مجلد</h2>
+                <h2>اضافة {{$magazine->call_by=='years'?' سنة' :'مجلد'}}</h2>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -48,7 +48,7 @@
 
                         <div class="form-input-container">
                             <input type="number" name="folder_number" required class="form-input" id="nameField" placeholder="رقم المجلد">
-                            <label for="nameField">رقم المجلد</label>
+                            <label for="nameField">{{$magazine->call_by=='years'?'السنة' :'رقم المجلد'}}</label>
                         </div>
 
                     <button type="submit" class="button button-wide modal-footer">اضافة مجلد</button>

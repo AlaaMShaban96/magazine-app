@@ -7,7 +7,7 @@
 @section('content')
 
     <div class="nav">
-        <div><h2>اعداد مجلد {{$folder->id}} لمجلة {{$folder->magazine->name}} </h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
+        <div><h2>اعداد {{$folder->magazine->call_by=='years'?' سنة' :'مجلد رقم'}} {{$folder->id}} لمجلة {{$folder->magazine->name}} </h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
 
         <a id="createModalOpen" href="#" class="button">اضافة عدد</a>
     </div>
