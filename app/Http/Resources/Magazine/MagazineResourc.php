@@ -25,6 +25,7 @@ class MagazineResourc extends JsonResource
             "country_id"=>$this->country->name,
             "available"=>$this->available,
             "status"=>$this->status,
+            "call_by"=>$this->call_by,
             "created_at"=>$this->created_at,
             "updated_at"=>$this->updated_at,
         ];
