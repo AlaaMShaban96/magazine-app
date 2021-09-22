@@ -1,3 +1,6 @@
+<label for="">البريد المرسل   : </label>
+<span>{{auth()->user()->email}}</span>
+<br>
 <label for="">نوع البلاغ  : </label>
 @switch($title)
     @case('not_working')
