@@ -59,7 +59,7 @@ class AuthController extends Controller
             $request['password']=Hash::make($request->password);
             $request['verified_code']=rand(100,100000);
             User::create($request->all());
-            Event::dispatch(new SendMail($request['email']));
+            Event::dispatch(new SendMail($request['email'],'sendCodeToEmail'));
     
             $response = ["message" =>'send code to email'];
             return response($response, 200);

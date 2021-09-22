@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\SendMail;
+use App\Events\SendNote;
 use App\Listeners\SendMailFired;
+use App\Listeners\SendNoteListener;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -24,6 +26,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         SendMail::class => [
             SendMailFired::class,
+        ],
+        SendNote::class => [
+            SendNoteListener::class,
         ],
     ];
 
