@@ -7,9 +7,9 @@
 @section('content')
 
     <div class="nav">
-        <div><h2>اعداد {{$folder->magazine->call_by=='years'?' سنة' :'مجلد رقم'}} {{$folder->id}} لمجلة {{$folder->magazine->name}} </h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
+        <div><h2>اعداد {{$folder->magazine->call_by=='years'?' سنة' :'مجلد رقم'}} {{$folder->folder_number}} لمجلة {{$folder->magazine->name}} </h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
 
-        <a id="createModalOpen" href="#" class="button">اضافة عدد</a>
+        <a id="createModalOpen" href="#" class="button">إضافة عدد</a>
     </div>
     <table>
         <thead>
@@ -46,7 +46,7 @@
         <!-- Modal content -->
         <div class="modal-content" style="height: 420px;">
             <div class="modal-header">
-                <h2>اضافة عدد</h2>
+                <h2>إضافة عدد</h2>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -74,7 +74,7 @@
                         <input type="file" name="pdf" class="form-input" id="fileField" placeholder="ملف " >
                         <label for="fileField"> pdf العدد</label>
                     </div>
-                    <button type="submit" class="button button-wide modal-footer">اضافة عدد</button>
+                    <button type="submit" class="button button-wide modal-footer">إضافة عدد</button>
                 </form>
             </div>
         </div>

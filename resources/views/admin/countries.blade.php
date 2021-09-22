@@ -5,7 +5,7 @@
     <div class="nav">
         <div><h2>الدول</h2></div>
 
-        <a id="createModalOpen" href="#" class="button">اضافة دولة</a>
+        <a id="createModalOpen" href="#" class="button">إضافة دولة</a>
     </div>
     <table>
         <thead>
@@ -39,7 +39,7 @@
         <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
-                <h2>اضافة دولة</h2>
+                <h2>إضافة دولة</h2>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -51,7 +51,7 @@
                             <label for="nameField">اسم الدولة</label>
                         </div>
                     </div>
-                    <button type="submit" class="button button-wide modal-footer">اضافة دولة</button>
+                    <button type="submit" class="button button-wide modal-footer">إضافة دولة</button>
                 </form>
             </div>
         </div>

@@ -11,7 +11,7 @@
     <div class="nav">
         <div><h2>المجلات</h2></div>
 
-        <a id="createModalOpen" href="#" class="button">اضافة مجلة</a>
+        <a id="createModalOpen" href="#" class="button">إضافة مجلة</a>
     </div>
     <table>
         <thead>
@@ -60,7 +60,7 @@
         <!-- Modal content -->
         <div class="modal-content modal__tall">
             <div class="modal-header">
-                <h2>اضافة مجلة</h2>
+                <h2>إضافة مجلة</h2>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -122,7 +122,7 @@
                      
 
                     </div>
-                    <button type="submit" class="button button-wide modal-footer">اضافة مجلة</button>
+                    <button type="submit" class="button button-wide modal-footer">إضافة مجلة</button>
                 </form>
             </div>
         </div>

@@ -19,7 +19,7 @@ class MagazineController extends Controller
      */
     public function index()
     {
-        $magazines=Magazine::paginate(7);
+        $magazines=Magazine::paginate(5);
         return view('admin.magazine.index',compact('magazines'));
     }
 

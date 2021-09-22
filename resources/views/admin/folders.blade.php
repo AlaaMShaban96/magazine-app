@@ -5,7 +5,7 @@
     <div class="nav">
         <div><h2> {{$magazine->call_by=='years'?' سنوات' :'مجلدات'}}  مجلة {{$magazine->name}}</h2> <a href="{{url('magazines')}}"><span>الرجوع للمجلة</span></a></div>
 
-        <a id="createModalOpen" href="#" class="button">اضافة {{$magazine->call_by=='years'?' سنة' :'مجلد'}} </a>
+        <a id="createModalOpen" href="#" class="button">إضافة {{$magazine->call_by=='years'?' سنة' :'مجلد'}} </a>
     </div>
     <table>
         <thead>
@@ -38,7 +38,7 @@
         <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
-                <h2>اضافة {{$magazine->call_by=='years'?' سنة' :'مجلد'}}</h2>
+                <h2>إضافة {{$magazine->call_by=='years'?' سنة' :'مجلد'}}</h2>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -51,7 +51,7 @@
                             <label for="nameField">{{$magazine->call_by=='years'?'السنة' :'رقم المجلد'}}</label>
                         </div>
 
-                    <button type="submit" class="button button-wide modal-footer">اضافة مجلد</button>
+                    <button type="submit" class="button button-wide modal-footer">إضافة مجلد</button>
                 </form>
             </div>
         </div>

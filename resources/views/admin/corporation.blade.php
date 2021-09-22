@@ -5,7 +5,7 @@
     <div class="nav">
         <div><h2>المؤسسات</h2></div>
 
-        <a id="createModalOpen" href="#" class="button">اضافة مؤسسة</a>
+        <a id="createModalOpen" href="#" class="button">إضافة مؤسسة</a>
     </div>
     <table>
         <thead>
@@ -42,7 +42,7 @@
 
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h2 style="color: black">اضافة مؤسسة</h2>
+                <h2 style="color: black">إضافة مؤسسة</h2>
 
             </div>
             <div class="modal-body">
@@ -54,7 +54,7 @@
                             <label for="nameField">اسم المؤسسة</label>
                         </div>
                     </div>
-                    <button type="submit" class="button button-wide modal-footer">اضافة مؤسسة</button>
+                    <button type="submit" class="button button-wide modal-footer">إضافة مؤسسة</button>
                 </form>
             </div>
         </div>

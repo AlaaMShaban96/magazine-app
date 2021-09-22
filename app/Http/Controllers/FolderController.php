@@ -12,7 +12,7 @@ class FolderController extends Controller
 {
     public function numbers(Folder $folder)
     {
-        $numbers = $folder->numbers()->paginate(7);
+        $numbers = $folder->numbers()->orderBy('number')->paginate(7);
         return view('admin.numbers',compact('folder','numbers'));
     }
     public function store(Magazine $magazine , Request $request)

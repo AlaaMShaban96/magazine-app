@@ -13,7 +13,7 @@
     <div class="nav">
         <div><h2>الملاحظات و البلاغات</h2></div>
 
-        {{-- <a id="createModalOpen" href="#" class="button">اضافة تصنيف</a> --}}
+        {{-- <a id="createModalOpen" href="#" class="button">إضافة تصنيف</a> --}}
     </div>
     <table>
         <thead>
@@ -63,7 +63,7 @@
         <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
-                <h2>اضافة تصنيف</h2>
+                <h2>إضافة تصنيف</h2>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -75,7 +75,7 @@
                             <label for="nameField">اسم التصنيف</label>
                         </div>
                     </div>
-                    <button type="submit" class="button button-wide modal-footer">اضافة تصنيف</button>
+                    <button type="submit" class="button button-wide modal-footer">إضافة تصنيف</button>
                 </form>
             </div>
         </div>
