@@ -17,9 +17,13 @@ class MagazineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $magazines=Magazine::paginate(5);
+        if($request->query('search'))
+        {
+            $magazines = Magazine::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
+        }
         return view('admin.magazine.index',compact('magazines'));
     }
 
@@ -49,8 +53,8 @@ class MagazineController extends Controller
             'public'
         );
         Magazine::create(array_merge (
-            $request->except('image'),
-            ['image' => $fileName]
+            $request->except('image','chosen'),
+            ['image' => $fileName,'chosen' => $request->chosen == 'on' ? true : false]
         ));
         Session::flash('message', 'تم إضافة  بنجاح');
         return redirect()->back();
@@ -101,8 +105,8 @@ class MagazineController extends Controller
             }
         }
       $magazine->update(array_merge (
-            $request->except('image'),
-            ['image' => $fileName]
+            $request->except('image','chosen'),
+            ['image' => $fileName , 'chosen' => $request->chosen == 'on' ? true : false]
         ));
         Session::flash('message', 'تم لتعديل  بنجاح');
         return redirect()->back();
@@ -134,9 +138,13 @@ class MagazineController extends Controller
         return redirect()->back();
     }
 
-    public function folders(Magazine $magazine)
+    public function folders(Magazine $magazine,Request $request)
     {
         $folders = $magazine->folders()->paginate(7);
+        if($request->query('search'))
+        {
+            $folders = $magazine->folders()->where('number' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
+        }
         return view('admin.folders',compact('magazine','folders'));
 
     }

@@ -119,7 +119,11 @@
                             <input type="radio" value="0" name="status" id="Stopped" />
                             <label for="Stopped">غير متوفرة</label>
                         </div>
-                     
+                        <div class="form-input-container">
+                            <input type="checkbox" name="chosen" id="chosen" />
+                            <label for="chosen">صفحة اخترنا لك</label>
+                        </div>
+
 
                     </div>
                     <button type="submit" class="button button-wide modal-footer">إضافة مجلة</button>

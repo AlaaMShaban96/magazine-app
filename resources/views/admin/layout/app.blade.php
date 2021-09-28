@@ -22,8 +22,9 @@
         @include('admin.layout.header')
         <main>
             <div class="nav">
-                <form>
-                    <input class="search" placeholder="البحث" />
+
+                <form action="?" method="GET">
+                    <input class="search" value="{{Request::query('search')}}" name="search" placeholder="البحث" />
                 </form>
                 <div class="userArea">
                     <a href="{{route('logout')}}" >
@@ -34,7 +35,7 @@
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-error">
-                        {{  $error}}
+                        {{  $error}}`
                         <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                     </div>
                 @endforeach
@@ -45,7 +46,7 @@
                     <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
                 </div>
             @endif
-           
+
             @yield('content')
         </main>
         <script src="{{ asset('js/app.js') }}" defer></script>

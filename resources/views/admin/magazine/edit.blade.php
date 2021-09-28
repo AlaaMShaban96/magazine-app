@@ -74,6 +74,10 @@
                         <input type="radio" value="0" name="status" id="Stopped"  {{$magazine->status?'':'checked'}}/>
                         <label for="Stopped">غير متوفرة</label>
                     </div>
+                   <div class="form-input-container">
+                       <input type="checkbox" {{$magazine->chosen?'checked':''}} name="chosen" id="chosen" />
+                       <label for="chosen">صفحة اخترنا لك</label>
+                   </div>
 
                 </div>
                 <button type="submit" class="button button-wide modal-footer">تعديل مجلة</button>

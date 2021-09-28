@@ -14,9 +14,13 @@ class CorporationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $corporations=Corporation::paginate(7);
+        if($request->query('search'))
+        {
+            $corporations = Corporation::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
+        }
         return view('admin.corporation',compact('corporations'));
     }
 

@@ -14,9 +14,13 @@ class RatingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $ratings=Rating::paginate(7);
+        if($request->query('search'))
+        {
+            $ratings = Rating::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
+        }
         return view('admin.ratings',compact('ratings'));
     }
 

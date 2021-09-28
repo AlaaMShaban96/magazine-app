@@ -14,9 +14,13 @@ class CountryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $countries=Country::paginate(7);
+        if($request->query('search'))
+        {
+            $countries = Country::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
+        }
         return view('admin.countries',compact('countries'));
     }
 
