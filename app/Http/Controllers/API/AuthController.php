@@ -17,7 +17,9 @@ class AuthController extends Controller
     private function loginUser( $token)
     {
         $user = User::where('api_token', $token)->first();
-        auth()->loginUsingId($user->id);
+        if (isset($user)) {
+            auth()->loginUsingId($user->id);
+        }
     }
     public function index(Request $request)
     {

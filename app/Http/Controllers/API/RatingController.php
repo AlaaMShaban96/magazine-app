@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
+use App\Models\Rating;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Rating\RatingCollection;
 
 class RatingController extends Controller
 {
@@ -14,7 +16,7 @@ class RatingController extends Controller
      */
     public function index()
     {
-        //
+       return new RatingCollection(Rating::all());
     }
 
     /**

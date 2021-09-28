@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\NoteController;
 use App\Http\Controllers\API\FolderController;
 use App\Http\Controllers\API\NumberController;
+use App\Http\Controllers\API\RatingController;
 use App\Http\Controllers\API\CountryController;
 use App\Http\Controllers\API\MagazineController;
 use App\Http\Controllers\API\CorporationController;
@@ -38,6 +39,7 @@ Route::get('/country/{country}/magazine',[CountryController::class,'show']);
 Route::get('/magazine',[MagazineController::class,'index']);
 Route::get('/magazine/{magazine}',[MagazineController::class,'show']);
 Route::get('/magazine/{magazine}/folder',[FolderController::class,'index']);
+Route::get('/rating',[RatingController::class,'index']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/resetPassword',[AuthController::class,'resetPassword']);
@@ -48,9 +50,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/magazine/{magazine}/save',[MagazineController::class,'save']);
     Route::get('/magazine/save/show',[MagazineController::class,'showSave']);
  
-    //                      save note
-    Route::post('/note',[NoteController::class,'store']);
-    Route::get('/note',[NoteController::class,'index']);
+    //                       note
+    // Route::post('/note',[NoteController::class,'store']);
+    // Route::get('/note',[NoteController::class,'index']);
+    Route::resource('note', NoteController::class);
     //                       reading
     Route::post('/number/{number}/reading',[NumberController::class,'reading']);
     Route::post('/number/{number}/reading/remove',[NumberController::class,'remove']);
