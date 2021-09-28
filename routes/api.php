@@ -57,6 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
     //                       reading
     Route::post('/number/{number}/reading',[NumberController::class,'reading']);
     Route::post('/number/{number}/reading/remove',[NumberController::class,'remove']);
+    Route::get('/reading',[NumberController::class,'show']);
 
 
 

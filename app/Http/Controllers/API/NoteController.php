@@ -17,7 +17,7 @@ class NoteController extends Controller
     public function index(Request $request)
     {
         $types=isset( $request->type)? $request->type:['not_working', 'incomplete','wrong_info','other','note'];
-        return new NoteCollection(auth()->user()->notes()->whereIn('title',  $types)->get());
+        return new NoteCollection(auth()->user()->notes()->whereIn('title',  $types)->paginate(7));
     }
     public function show(Note $note)
     {

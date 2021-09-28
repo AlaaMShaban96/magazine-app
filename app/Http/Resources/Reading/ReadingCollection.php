@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class ReadingCollection extends ResourceCollection
 {
     public $collects = ReadingResource::class;
-    public static $wrap = '';
+    public static $wrap = 'data';
     /**
      * Transform the resource collection into an array.
      *

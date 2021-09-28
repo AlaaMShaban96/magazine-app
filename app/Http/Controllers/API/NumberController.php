@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Number;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Reading\ReadingCollection;
 
 class NumberController extends Controller
 {
@@ -23,6 +24,12 @@ class NumberController extends Controller
     {
         auth()->user()->reading()->detach($number->id);
         return response()->json(['date'=>"remove  number to reading  Success"], 200);
+
+    }
+    public function show()
+    {
+     return  new ReadingCollection( auth()->user()->reading()->paginate(7));
+     
 
     }
 }
