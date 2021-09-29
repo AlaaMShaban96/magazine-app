@@ -9,7 +9,7 @@ class NoteController extends Controller
 {
     public function index(Request $request)
     {
-        $notes=Note::paginate(7);
+        $notes=Note::paginate(50);
         if($request->query('search'))
         {
             $notes = Note::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);

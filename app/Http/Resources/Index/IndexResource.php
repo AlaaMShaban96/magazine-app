@@ -20,6 +20,7 @@ class IndexResource extends JsonResource
         return[
             'reading'=>new ReadingCollection(isset($this->reading)?$this->reading:[]),
             'new_magazine'=> new MagazineCollection(Magazine::orderBy('id', 'desc')->limit(15)->get()),
+            'choose_for_you'=> new MagazineCollection(Magazine::where('chosen', true)->limit(15)->get()),
         ];
     }
 }

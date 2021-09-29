@@ -16,7 +16,7 @@ class RatingController extends Controller
      */
     public function index(Request $request)
     {
-        $ratings=Rating::paginate(7);
+        $ratings=Rating::paginate(50);
         if($request->query('search'))
         {
             $ratings = Rating::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
