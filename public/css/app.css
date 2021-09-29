@@ -285,7 +285,6 @@ td .edit {
 }
 .form-holder{
     width: 95%;
-    /* display:flex; */
     flex-direction: column;
     align-items: center;
     margin:5px 0;
