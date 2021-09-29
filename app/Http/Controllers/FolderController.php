@@ -12,7 +12,7 @@ class FolderController extends Controller
 {
     public function numbers(Folder $folder,Request $request)
     {
-        $numbers = $folder->numbers()->orderBy('number')->paginate(7);
+        $numbers = $folder->numbers()->orderBy('number')->paginate(50);
         if($request->query('search'))
         {
             $numbers = $folder->numbers()->orderBy('number')->where('number' ,'LIKE', "%".$request->query('search')."%")->paginate(7);

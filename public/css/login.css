@@ -64,7 +64,6 @@ body{
 }
 .form-holder{
     width: 100%;
-    display:flex;
     flex-direction: column;
     align-items: center;
     margin:5px 20px;
