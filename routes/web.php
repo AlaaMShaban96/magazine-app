@@ -52,6 +52,7 @@ Route::middleware(['adminauth'])->group(function () {
     Route::delete('/ratings/{rating}',[RatingController::class,'destroy']);
 
     Route::get('/magazines', [MagazineController::class,'index'])->name('magazines');
+    Route::get('/magazines/chosen',[MagazineController::class,'chosen'])->name('chosen');
     Route::get('/magazines/{magazine}', [MagazineController::class,'edit'])->name('magazines');
     Route::put('/magazines/{magazine}', [MagazineController::class,'update']);
     Route::post('/magazines', [MagazineController::class,'store']);

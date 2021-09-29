@@ -8,5 +8,6 @@
         <a href="{{url('/corporations')}}" class="item {{ (\Request::route()->getName() == 'corporations') ? 'active' : '' }}"><i class="fa fa-briefcase"></i>المؤسسات </a>
         <a href="{{url('/ratings')}}" class="item {{ (\Request::route()->getName() == 'ratings') ? 'active' : '' }}"><i class="fa fa-star"></i>التصنيفات </a>
         <a href="{{url('/notes')}}" class="item {{ (\Request::route()->getName() == 'notes') ? 'active' : '' }}"><i class="fa fa-sticky-note-o"></i>ملاحظات </a>
+        <a href="{{url('/magazines/chosen')}}" class="item {{ (\Request::route()->getName() == 'chosen') ? 'active' : '' }}"><i class="fa fa-sticky-note-o"></i>اخترنا لك </a>
     </div>
 </section>
