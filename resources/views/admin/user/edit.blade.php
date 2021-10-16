@@ -30,9 +30,9 @@
                     <div class="form-input-container">
                         <label for="role">صلاحيات  : </label>
 
-                        <input type="radio" value="admin" name="role" id="Going"  />
+                        <input type="radio" value="admin" name="role" id="Going"  {{$admin->role=='admin'?'checked':''}} />
                         <label for="admin">مدير</label>
-                        <input type="radio" value="edtor" name="role" id="Stopped" />
+                        <input type="radio" value="edtor" name="role" id="Stopped"{{$admin->role=='edtor'?'checked':''}} />
                         <label for="edtor"> مستخدم</label>
                     </div>
                 </div>
