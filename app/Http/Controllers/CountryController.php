@@ -16,7 +16,7 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        $countries=Country::paginate(7);
+        $countries=Country::paginate(50);
         if($request->query('search'))
         {
             $countries = Country::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);

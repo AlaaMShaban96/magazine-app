@@ -16,7 +16,7 @@ class CorporationController extends Controller
      */
     public function index(Request $request)
     {
-        $corporations=Corporation::paginate(7);
+        $corporations=Corporation::paginate(50);
         if($request->query('search'))
         {
             $corporations = Corporation::where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
