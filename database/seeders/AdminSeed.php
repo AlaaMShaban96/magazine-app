@@ -19,6 +19,7 @@ class AdminSeed extends Seeder
             [
             'name' =>'admin',
             'email' =>'admin@nano-tech.ly',
+            'role' =>'admin',
             'password' =>Hash::make('1234'),
             ]
         
