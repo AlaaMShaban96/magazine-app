@@ -57,10 +57,8 @@
                     <div class="form-input-container">
                         <label for="call_by">ترقيم باستخدام : </label>
 
-                        <input type="radio" value="years" name="call_by" id="Going" {{$magazine->call_by=='years'?'checked':''}}/>
-                        <label for="years">السنة</label>
-                        <input type="radio" value="folder" name="call_by" id="Stopped"{{$magazine->call_by=='folder'?'checked':''}} />
-                        <label for="folder"> المجلد</label>
+                        <input type="text"  name="call_by" id="Going" value=" {{$magazine->call_by}}"/>
+                        
                     </div>
                     <div class="form-input-container">
                         <input type="radio" value="1" name="available" id="isAvaliable" {{$magazine->available?'checked':''}}/>

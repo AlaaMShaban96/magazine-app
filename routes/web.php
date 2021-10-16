@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FolderController;
 use App\Http\Controllers\NumberController;
@@ -27,6 +28,12 @@ Route::post('/login', [AdminController::class,'login']);
 Route::middleware(['adminauth'])->group(function () {
 
     Route::get('/logout', [AdminController::class,'logout'])->name('logout');
+
+    Route::get('/admins', [AdminController::class,'indexView'])->name('admin');
+    Route::post('/admins', [AdminController::class,'store'])->name('admin');
+    Route::get('/admins/{admin}', [AdminController::class,'showView'])->name('admin');
+    Route::put('/admins/{admin}', [AdminController::class,'update'])->name('admin');
+    Route::delete('/admins/{admin}', [AdminController::class,'destroy'])->name('admin');
 
     Route::get('/dashboard', [AdminController::class,'show'])->name('dashboard');
     Route::get('/notes', [NoteController::class,'index'])->name('notes');
