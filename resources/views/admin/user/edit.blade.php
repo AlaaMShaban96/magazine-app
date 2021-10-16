@@ -28,9 +28,12 @@
                         <label for="nameField">كلمة السر</label>
                     </div>
                     <div class="form-input-container">
-                        <label for="call_by">صلاحيات  : </label>
-                        <input type="text"  name="call_by" id="Going" value=" {{$magazine->call_by}}"/>
+                        <label for="role">صلاحيات  : </label>
 
+                        <input type="radio" value="admin" name="role" id="Going"  />
+                        <label for="admin">مدير</label>
+                        <input type="radio" value="edtor" name="role" id="Stopped" />
+                        <label for="edtor"> مستخدم</label>
                     </div>
                 </div>
                 <button type="submit" class="button button-wide modal-footer">تعديل مستخدم</button>
