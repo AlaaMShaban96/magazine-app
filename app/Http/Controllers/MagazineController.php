@@ -148,5 +148,14 @@ class MagazineController extends Controller
         return view('admin.folders',compact('magazine','folders'));
 
     }
+    public function chosen(Request $request)
+    {
+        $magazines=Magazine::where("chosen",1)->paginate(5);
+        if($request->query('search'))
+        {
+            $magazines = Magazine::where("chosen",1)->where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
+        }
+        return view('admin.magazine.chosen',compact('magazines'));
+    }
 
 }
