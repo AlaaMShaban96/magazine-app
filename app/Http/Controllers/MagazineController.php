@@ -120,6 +120,12 @@ class MagazineController extends Controller
      */
     public function destroy(Magazine $magazine)
     {
+
+        if(auth('admin')->user()->role != 'admin' && Carbon\Carbon::now()->addDays(5)->diffInDays($magazine->created_at) > 5)
+        {
+            return redirect()->back();
+        }
+
         $destinationPath = 'images/'.$magazine->image;
         if(Storage::disk('public')->exists($destinationPath)){
             Storage::disk('public')->delete($destinationPath);
