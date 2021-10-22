@@ -35,7 +35,7 @@
                 <td>{{$item->status?'متوفرة':"غير متوفرة"}}</td>
                 <td><a href="{{url('/magazines/'.$item->id.'/folders')}}" style="padding-top:5px;padding-bottom:5px;" class="button button-primary">{{$item->call_by}}</a></td>
                 <td>
-                    @if(auth('admin')->user()->role == 'admin' || Carbon\Carbon::now()->diffInDays($item->created_at) < 5)
+                    @if(auth('admin')->user()->role == 'admin' ||  \Carbon\Carbon::now()->diffInDays($item->created_at) < 5)
                         <form action="{{route('magazines',$item->id)}}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
