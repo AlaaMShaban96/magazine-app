@@ -65,7 +65,7 @@
                                 <option value="{{$year}}">{{$year}}</option>
                                 @endforeach
                               </select>
-                              
+
                             {{-- <input type="years" name="edition" class="form-input" id="editionField" placeholder="اصدار العدد" > --}}
                             <label for="editionField">اصدار العدد</label>
                         </div>
@@ -81,3 +81,34 @@
 
     </div>
 @endsection
+
+@push('js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.delete').on('click', function(event){
+                var form = $(".delete").parent();
+                event.preventDefault();
+                swal.fire({
+                    title: "هل متأكد من الحذف ؟",
+                    text: "سيتم حذف جميع البيانات المتعلقة بها",
+                    icon: "warning",
+                    showDenyButton: false,
+                    showCancelButton: true,
+                    confirmButtonText: 'تاكيد الحذف',
+                    cancelButtonText: `الرجوع`,
+                    dangerMode: true,
+                }).then(function(isConfirm) {
+                    if (isConfirm.isConfirmed) {
+                        form.submit();
+                    } else {
+                        console.log(isConfirm)
+                        swal.fire("تم التراجع عن الحذف بنجاح", "");
+                    }
+                });
+
+            });
+        });
+    </script>
+@endpush
