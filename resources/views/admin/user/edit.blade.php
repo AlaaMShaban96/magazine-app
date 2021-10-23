@@ -9,7 +9,10 @@
     </div>
 
     <div class="modal-content">
-       
+        <div class="modal-header">
+            <h2>تعدبل المستخدم</h2>
+            <span class="close">&times;</span>
+        </div>
         <div class="modal-body">
                 <form action="{{url("/admins/$admin->id")}}" method="post">
                 @csrf

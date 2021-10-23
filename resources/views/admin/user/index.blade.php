@@ -21,15 +21,17 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->role=='admin'?'مدير':'مستخدم'}}</td>
                 <td>
-                    <form action="{{url('/admins/'.$user->id)}}" method="post">
+                    {{-- <form action="{{url('/admins/'.$user->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
+                        <button class="delete" type="submit"><i class="fa fa-trash "></i></button> --}}
                         <a class="edit" href="{{url('admins/'.$user->id)}}"><i class="fa fa-pencil "></i></a>
+                        <a id="deleteModalOpen" href="#"><i class="fa fa-trash "></i></a>
 
-                    </form>
+                    {{-- </form> --}}
                 </td>
             </tr>
+            
         @endforeach
         </tbody>
 
@@ -42,10 +44,9 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            {{-- <div class="modal-header">
-                <h2>إضافة مستخدم</h2>
+            <div class="modal-header">
                 <span class="close">&times;</span>
-            </div> --}}
+            </div>
             <div class="modal-body">
                 <form action="{{url("/admins")}}" method="post">
                 @csrf
@@ -74,6 +75,26 @@
                 <button type="submit" class="button button-wide modal-footer">إضافة مستخدم</button>
             </form>
         </div>
+        </div>
+
+    </div>
+    <div id="deleteModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content  model-delete">
+            <div class="modal-header">
+                <h2>سيتم حدف المستخدم </h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" style="color: red">
+                <form action="{{url('/admins/')}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <span>هل انت موافق ؟</span>
+                    
+                    <button class="delete" type="submit">نعم</button>    
+                </form>
+            </div>
         </div>
 
     </div>

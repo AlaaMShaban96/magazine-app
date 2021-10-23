@@ -227,6 +227,9 @@ td .edit {
     height: 350px;
     border-radius: 5px;
 }
+.model-delete{
+    height: 197px;
+}
 .modal__tall{
     height: 700px;
 }
@@ -245,7 +248,7 @@ td .edit {
     place-self: flex-end;
 }
 .modal-body{
-    padding:20px;
+    padding:0 20px 20px 20px;
 }
 .close {
     color: #aaa;
