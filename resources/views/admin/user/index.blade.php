@@ -26,7 +26,10 @@
                         @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button> --}}
                         <a class="edit" href="{{url('admins/'.$user->id)}}"><i class="fa fa-pencil "></i></a>
+                        @if (auth()->guard('admin')->user()->role=='admin' && $user->id!=1)
                         <a id="deleteModalOpen" href="#"><i class="fa fa-trash "></i></a>
+                        @endif
+
 
                     {{-- </form> --}}
                 </td>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Magazine\MagazineRequest;
+use Carbon\Carbon;
 use App\Models\Magazine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\Magazine\MagazineRequest;
 
 
 class MagazineController extends Controller
@@ -121,7 +122,7 @@ class MagazineController extends Controller
     public function destroy(Magazine $magazine)
     {
 
-        if(auth('admin')->user()->role != 'admin' && Carbon\Carbon::now()->addDays(5)->diffInDays($magazine->created_at) > 5)
+        if(auth('admin')->user()->role != 'admin' && Carbon::now()->addDays(5)->diffInDays($magazine->created_at) > 5)
         {
             return redirect()->back();
         }

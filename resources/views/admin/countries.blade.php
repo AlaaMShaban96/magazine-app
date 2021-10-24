@@ -20,7 +20,11 @@
                     <form action="{{url('/countries/'.$country->id)}}" method="post">
                         @csrf
                         @method('DELETE')
+                        @if (auth()->guard('admin')->user()->role=='admin')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
+
+                        @endif
+
                         <a class="edit" href="{{route('countries',$country->id)}}"><i class="fa fa-pencil "></i></a>
 
                     </form>

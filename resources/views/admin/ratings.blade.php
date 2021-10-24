@@ -20,7 +20,11 @@
                     <form action="{{url('/ratings/'.$rating->id)}}" method="post">
                         @csrf
                         @method('DELETE')
+                        @if (auth()->guard('admin')->user()->role=='admin')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
+
+                        @endif
+
                         <a class="edit" href="{{route('ratings',$rating->id)}}"><i class="fa fa-pencil "></i></a>
                     </form>
                 </td>
