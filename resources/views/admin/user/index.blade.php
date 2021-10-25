@@ -26,7 +26,7 @@
                         @method('DELETE')
                         <button class="delete" type="submit"><i class="fa fa-trash "></i></button> --}}
                         <a class="edit" href="{{url('admins/'.$user->id)}}"><i class="fa fa-pencil "></i></a>
-                        @if (auth()->guard('admin')->user()->role=='admin' && (| $user->email !='admin@nano-tech.ly'))
+                        @if (auth()->guard('admin')->user()->role=='admin' && ( $user->email !='admin@nano-tech.ly'))
                         <a id="deleteModalOpen" href="#"><i class="fa fa-trash "></i></a>
                         @endif
 
