@@ -21,17 +21,17 @@
                 <td>{{$user->email}}</td>
                 <td>{{$user->role=='admin'?'مدير':'مستخدم'}}</td>
                 <td>
-                    {{-- <form action="{{url('/admins/'.$user->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="delete" type="submit"><i class="fa fa-trash "></i></button> --}}
-                        <a class="edit" href="{{url('admins/'.$user->id)}}"><i class="fa fa-pencil "></i></a>
-                        @if (auth()->guard('admin')->user()->role=='admin' && ( $user->email !='admin@nano-tech.ly'))
-                        <a id="deleteModalOpen" href="#"><i class="fa fa-trash "></i></a>
-                        @endif
+                    @if (auth()->guard('admin')->user()->role=='admin' && ( $user->email !='admin@nano-tech.ly'))
 
+                        <form action="{{url('/admins/'.$user->id)}}" method="post" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button class="delete" type="submit"><i class="fa fa-trash "></i></button>
+                        </form>
+                    @endif
 
-                    {{-- </form> --}}
+                    <a class="edit" href="{{url('admins/'.$user->id)}}"><i class="fa fa-pencil "></i></a>
+
                 </td>
             </tr>
             
@@ -81,26 +81,7 @@
         </div>
 
     </div>
-    <div id="deleteModal" class="modal">
 
-        <!-- Modal content -->
-        <div class="modal-content  model-delete">
-            <div class="modal-header">
-                <h2>سيتم حدف المستخدم </h2>
-                <span class="close">&times;</span>
-            </div>
-            <div class="modal-body" style="color: red">
-                <form action="{{url('/admins/')}}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <span>هل انت موافق ؟</span>
-                    
-                    <button class="delete" type="submit">نعم</button>    
-                </form>
-            </div>
-        </div>
-
-    </div>
 @endsection
 
 @push('js')
