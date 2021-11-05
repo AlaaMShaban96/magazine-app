@@ -34,8 +34,7 @@ class SendNoteListener
         $note->data['magazine']=$number->folder->magazine->name;
         $note->data['folder']=$number->folder->folder_number;
         $note->data['number']=$number->number;
-
-        MultiMail::to('ala96ala96@gmail.com')->from('report@al-mjala.com')->
+        MultiMail::to(env('EMAIL_OWNER'))->from('report@al-mjala.com')->
         send(new sendReportToAdmin($note->data));
         // send('emails.send_report', $note->data, function($message) use ($note) {
         //         // $message->to(env('MAIL_USERNAME'));
