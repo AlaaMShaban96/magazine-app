@@ -36,10 +36,9 @@ class AuthRequest extends FormRequest
                 
             case 'register':
                 return [
-                    'email' => 'required|email',
+                    'email' => 'required|email|unique:users,email',
                     'name' => 'required',
                     'password' => 'required',
-                    'phone_number' => 'required',
                 ];
                 break;
             case 'reSendCode':
