@@ -3,10 +3,13 @@
 namespace App\Listeners;
 
 use App\Models\User;
+use App\Mail\sendEmail;
 use App\Events\SendMail;
+use App\Mail\sendVerifiedCodeToUser;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use IWasHereFirst2\LaravelMultiMail\Facades\MultiMail;
 
 class SendMailFired
 {
@@ -29,24 +32,10 @@ class SendMailFired
     public function handle(SendMail $event)
     {
         $user['data']=$event->data; 
+        $user['type']=$event->type; 
         $user['user'] = User::where('email', $event->email)->get()->toArray();
-        Mail::send('emails.'.$event->type, $user, function($message) use ($user,$event) {
-            $message->to($user['user'][0]['email']);
-            $message->subject($this->subject($event->type));
-        });
+        MultiMail::to($user['user'][0]['email'])->from('no-reply@al-mjala.com')
+        ->send(new sendVerifiedCodeToUser($user));
     }
-    private function subject($page)
-    {
-       switch ($page) {
-           case 'sendCodeToEmail':
-              return 'verifie your email';
-               break;
-           case 'sendCodeToResetPassword':
-              return 'reset your password ';
-               break;
-           default:
-               # code...
-               break;
-       }
-    }
+   
 }

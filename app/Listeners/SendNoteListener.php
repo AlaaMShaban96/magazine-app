@@ -4,9 +4,11 @@ namespace App\Listeners;
 
 use App\Models\Number;
 use App\Events\SendNote;
+use App\Mail\sendReportToAdmin;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use IWasHereFirst2\LaravelMultiMail\Facades\MultiMail;
 
 class SendNoteListener
 {
@@ -29,34 +31,18 @@ class SendNoteListener
     public function handle(SendNote $note)
     {
         $number=Number::find($note->data['number_id']);
-        // dd(env('MAIL_USERNAME'));
         $note->data['magazine']=$number->folder->magazine->name;
         $note->data['folder']=$number->folder->folder_number;
         $note->data['number']=$number->number;
-        Mail::send('emails.send_report', $note->data, function($message) use ($note) {
-            $message->to(env('MAIL_USERNAME'));
-            $message->subject($this->subject($note->data['title']));
-        });
+
+        MultiMail::to('ala96ala96@gmail.com')->from('report@al-mjala.com')->
+        send(new sendReportToAdmin($note->data));
+        // send('emails.send_report', $note->data, function($message) use ($note) {
+        //         // $message->to(env('MAIL_USERNAME'));
+        //         $message->subject($this->subject($note->data['title']));
+        //     });
+        // send(new \App\Mail\Invitation($user));
         
     }
-    private function subject($page)
-    {
-       switch ($page) {
-           case 'not_working':
-              return 'بلاغ النظام لا يعمل جيدا';
-               break;
-           case 'incomplete':
-              return 'غير مكتمل';
-               break;
-           case 'wrong_info':
-              return 'بلاغ عن معلومات غير صحيحة  ';
-               break;
-           case 'other':
-              return 'بلاغ عن اخرا ';
-               break;
-           default:
-               # code...
-               break;
-       }
-    }
+   
 }

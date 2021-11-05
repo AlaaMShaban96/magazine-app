@@ -75,17 +75,17 @@ class AuthController extends Controller
     }
     public function reSendCode(AuthRequest $request)
     { 
-        try {
+        // try {
                 $user= User::where('email', $request->email)->first();
                 $user->verified_code=rand(100,100000);
                 $user->save();
                 Event::dispatch(new SendMail($request['email'],'sendCodeToEmail'));
                 $response = ["message" =>'resend code to email'];
                 return response($response, 200);
-        } catch (\Throwable $th) {
-                $response = ["message" =>'have problem in reSendCode '];
-                return response($response, 500);
-        }
+        // } catch (\Throwable $th) {
+        //         $response = ["message" =>'have problem in reSendCode '];
+        //         return response($response, 500);
+        // }
       
         
         

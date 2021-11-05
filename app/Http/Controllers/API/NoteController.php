@@ -25,7 +25,7 @@ class NoteController extends Controller
     }
     public function store(NoteRequest $request)
     {
-        try {
+        // try {
             switch ($request->title) {
                 case 'note':
                     $request["user_id"]=auth()->user()->id;
@@ -39,10 +39,10 @@ class NoteController extends Controller
                     break;
             }
            
-        } catch (\Throwable $th) {
-            return response()->json(['date'=>"error on create note"], 500);
+        // } catch (\Throwable $th) {
+        //     return response()->json(['date'=>"error on create note"], 500);
 
-        }
+        // }
        
         return response()->json(['date'=>"add notes Success"], 200);
     }
