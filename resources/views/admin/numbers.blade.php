@@ -1,5 +1,5 @@
 @php
-    $years = range(2000, strftime("%Y", time()));
+    $years = range(1900, strftime("%Y", time()));
 @endphp
 
 @extends('admin.layout.app')
@@ -54,7 +54,7 @@
                     @csrf
                     <div class="form-holder">
                         <div class="form-input-container">
-                            <input type="number" name="number" class="form-input" id="nameField" placeholder="اسم العدد">
+                            <input type="text" name="number" class="form-input" id="nameField" placeholder="اسم العدد">
                             <label for="nameField">رقم العدد</label>
                         </div>
                     </div>
