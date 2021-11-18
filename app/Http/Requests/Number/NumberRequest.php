@@ -33,7 +33,7 @@ class NumberRequest extends FormRequest
                 return [
                     'number' => 'required',
                     'edition' => 'required',
-                    'pdf' => ''
+                    'pdf' => 'required'
                 ];
                 break;
 

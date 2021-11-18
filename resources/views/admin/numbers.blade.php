@@ -54,7 +54,7 @@
                     @csrf
                     <div class="form-holder">
                         <div class="form-input-container">
-                            <input type="text" name="number" class="form-input" id="nameField" placeholder="اسم العدد">
+                            <input type="text" name="number" class="form-input" id="nameField" placeholder="اسم العدد" required>
                             <label for="nameField">رقم العدد</label>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="form-input-container">
-                        <input type="file" name="pdf" class="form-input" id="fileField" placeholder="ملف " >
+                        <input type="file" name="pdf" class="form-input" id="fileField" placeholder="ملف " required>
                         <label for="fileField"> pdf العدد</label>
                     </div>
                     <button type="submit" class="button button-wide modal-footer">إضافة عدد</button>

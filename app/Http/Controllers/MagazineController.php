@@ -147,7 +147,7 @@ class MagazineController extends Controller
 
     public function folders(Magazine $magazine,Request $request)
     {
-        $folders = $magazine->folders()->paginate(7);
+        $folders = $magazine->folders()->paginate(50);
         if($request->query('search'))
         {
             $folders = $magazine->folders()->where('number' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
@@ -157,7 +157,7 @@ class MagazineController extends Controller
     }
     public function chosen(Request $request)
     {
-        $magazines=Magazine::where("chosen",1)->paginate(5);
+        $magazines=Magazine::where("chosen",1)->paginate(50);
         if($request->query('search'))
         {
             $magazines = Magazine::where("chosen",1)->where('name' ,'LIKE', "%".$request->query('search')."%")->paginate(7);
