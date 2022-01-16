@@ -18,7 +18,7 @@ class MagazineController extends Controller
      */
     public function index(Request $request)
     {
-        return new MagazineCollection(Magazine::filter($request->all())->orderBy('desc')->paginate(7));
+        return new MagazineCollection(Magazine::filter($request->orderBy('desc'))->paginate(7));
     }
 
 
