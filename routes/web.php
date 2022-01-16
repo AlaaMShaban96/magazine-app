@@ -22,7 +22,9 @@ use App\Http\Controllers\CorporationController;
 |
 */
 
-Route::get('/', [AdminController::class,'index'])->name('login');
+Route::get('/', [AdminController::class,'home']);
+Route::get('/privacy', [AdminController::class,'privacy']);
+Route::get('/login', [AdminController::class,'index'])->name('login');
 Route::post('/login', [AdminController::class,'login']);
 
 Route::middleware(['adminauth'])->group(function () {

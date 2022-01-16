@@ -16,6 +16,16 @@ use App\Http\Requests\Admin\AdminRequest;
 
 class AdminController extends Controller
 {
+    public function home()
+    {
+
+        return view('welcome');
+    }
+    public function privacy()
+    {
+
+        return view('privacy');
+    }
     public function index()
     {
 
