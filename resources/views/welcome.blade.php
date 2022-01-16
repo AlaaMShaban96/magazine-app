@@ -21,7 +21,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <p style="text-align:right;">
+        <p style="text-align:right;margin-right: 1%;">
             <a href="{{ url('/privacy') }}" class="underline">سياسة الخصوصية</a>
         </p>  
                     
