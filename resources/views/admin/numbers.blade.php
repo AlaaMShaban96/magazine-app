@@ -88,7 +88,7 @@
     <script type="text/javascript">
         $(function(){
             $('.delete').on('click', function(event){
-                var form = $(".delete").parent();
+                var form = $(this).parent();
                 event.preventDefault();
                 swal.fire({
                     title: "هل متأكد من الحذف ؟",
