@@ -20,7 +20,7 @@ class MagazineController extends Controller
      */
     public function index(Request $request)
     {
-        $magazines=Magazine::orderBy('desc')->paginate(50);
+        $magazines=Magazine::orderBy('id','desc')->paginate(50);
         if($request->query('search'))
         {
             $magazines = Magazine::where('name' ,'LIKE', "%".$request->query('search')."%")->orderBy('id','desc')->paginate(7);
