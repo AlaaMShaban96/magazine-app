@@ -23,7 +23,7 @@ class MagazineController extends Controller
         $magazines=Magazine::orderBy('desc')->paginate(50);
         if($request->query('search'))
         {
-            $magazines = Magazine::where('name' ,'LIKE', "%".$request->query('search')."%")->orderBy('desc')->paginate(7);
+            $magazines = Magazine::where('name' ,'LIKE', "%".$request->query('search')."%")->orderBy('id','desc')->paginate(7);
         }
         return view('admin.magazine.index',compact('magazines'));
     }
